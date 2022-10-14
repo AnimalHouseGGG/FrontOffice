@@ -1,0 +1,1 @@
+add productDetailsPage and serviceDetailsPage and userPage
