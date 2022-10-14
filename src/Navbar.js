@@ -21,7 +21,6 @@ const Navbar = () => {
           borderRadius: '8px' 
         }}>Login</Link>
         <Link to='/bacheca'>Bacheca</Link>
-        <Link to='/'> ciao </Link>
       </div>
     </nav>
      )

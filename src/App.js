@@ -9,6 +9,7 @@ import Login from './Login';
 import Servizi from './Servizi';
 import Bacheca from './Bacheca';
 import ProductDetails from './ProductDetails';
+import ServiceDetails from './ServiceDetails';
 
 function App() { // Creare componente Home per '/' e mettere Catalogo come componente di Home
   return (
@@ -21,6 +22,7 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
           <Route path='/login' element={<Login/>}></Route>
           <Route path='/services' element={<Servizi/>}></Route>
           <Route path='/item/:id' element={<ProductDetails/>}></Route>
+          <Route path='service/:id' element={<ServiceDetails/>}></Route>
           </Routes>
       
       

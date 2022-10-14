@@ -1,4 +1,8 @@
+import { Link } from "react-router-dom";
+
+
 const CatalogoServizi = ({services}) => {
+
      return (
        <div className="services-list" style={{ display: 'flex'}}>
         {services.map( service => (
@@ -7,7 +11,7 @@ const CatalogoServizi = ({services}) => {
             <div class="card-body">
               <h5 class="card-title">{service.name}</h5>
               <p class="card-text">Categoria: {service.category}</p>
-              <a href="/services" class="btn btn-primary">Details</a>
+              <Link class="btn btn-primary" to={"/service/"+service._id} state={{service}}> Details </Link>
             </div>
           </div>
         ))}
