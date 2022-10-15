@@ -3,7 +3,7 @@ import { useState } from "react";
 import PropTypes from 'prop-types';
 
 async function loginUser(credentials) {
-  return fetch('http://localhost:8080/login', {
+  return fetch('https://site212216.tw.cs.unibo.it/login', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
