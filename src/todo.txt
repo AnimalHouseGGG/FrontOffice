@@ -1,1 +1,1 @@
-add productDetailsPage and serviceDetailsPage and userPage
+add userPage
