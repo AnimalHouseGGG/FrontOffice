@@ -3,7 +3,7 @@ const ACCESS_TOKEN_STORAGE = 'accessToken';
 const LoginUtils={
     isLoggedIn: function isLoggedIn(){
         try{//TODO manca checkValidity nell if
-            if (!localStorage.hasOwnProperty(ACCESS_TOKEN_STORAGE) || typeof localStorage[ACCESS_TOKEN_STORAGE]===undefined || localStorage[ACCESS_TOKEN_STORAGE]==="undefined" ){
+            if (!localStorage.hasOwnProperty(ACCESS_TOKEN_STORAGE) || localStorage[ACCESS_TOKEN_STORAGE]==="undefined" ){
                 return false;
             }else
                 return true;
@@ -15,7 +15,7 @@ const LoginUtils={
       
       logout: function logout(){
         localStorage.clear();
-        window.location.reload()
+        window.location.replace('/');
       }
 }
 

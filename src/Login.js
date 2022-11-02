@@ -34,13 +34,16 @@ const Login = () => {
       let urlLogin=url+"/login/users";
       
      
-      await axios.post(urlLogin, data).then( res=> setToken(res.data["authority"])).catch(e=>console.log(e.response.data.message));
-      let userId=localStorage['userId'];
-      let urlUser=url+"/client/"+userId;
-      await axios.get(urlUser).then( res => {
-        localStorage['user']=JSON.stringify(res.data[0])
-      })
-      window.location.reload();
+      await axios.post(urlLogin, data).then( async res=> {
+        setToken(res.data["authority"]);
+        let userId=localStorage['userId'];
+        let urlUser=url+"/client/"+userId;
+        await axios.get(urlUser).then( res => {
+          localStorage['user']=JSON.stringify(res.data[0])
+        }).then( ()=> window.location.reload())
+      }).catch(e=>console.log(e.response.data.message));
+      
+      
   }
     
 
