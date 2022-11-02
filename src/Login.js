@@ -1,40 +1,55 @@
 import { useState } from "react";
-//import {useNavigate } from "react-router-dom";
-import PropTypes from 'prop-types';
+import axios from "axios";
+import { Link } from "react-router-dom";
 
-async function loginUser(credentials) {
-  return fetch('https://site212216.tw.cs.unibo.it/login', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(credentials)
-  })
-    .then(data => data.json())
- }
+const url = "https://site212216.tw.cs.unibo.it"
+const ACCESS_TOKEN_STORAGE = 'accessToken';
 
-const Login = ({setToken}) => {
+
+
+const Login = () => {
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     //const navigate = useNavigate();
 
 
-    const handleSubmit = async e => {
-      e.preventDefault();
-      const token = await loginUser({
-        username,
-        password
-      });
-      setToken(token);
-    }
+  
+  
+  
+  async function setToken(token){
+      localStorage[ACCESS_TOKEN_STORAGE] = token;
+      let myObj = JSON.parse(atob(token.split('.')[1]));
+      localStorage['userId'] = myObj.id; 
+  }
+  
+  const handleLogin= async e=>{
+    e.preventDefault();
+      let data = {}
+      data.username = username;
+      data.psw = password;
+      data.role="customer";
+  
+      console.log(data);
+      let urlLogin=url+"/login/users";
+      
+     
+      await axios.post(urlLogin, data).then( res=> setToken(res.data["authority"])).catch(e=>console.log(e.response.data.message));
+      let userId=localStorage['userId'];
+      let urlUser=url+"/client/"+userId;
+      await axios.get(urlUser).then( res => {
+        localStorage['user']=JSON.stringify(res.data[0])
+      })
+      window.location.reload();
+  }
+    
 
     
 
     return ( 
         <div className="create">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <label>Username</label>
         <input 
           type="text" 
@@ -44,19 +59,20 @@ const Login = ({setToken}) => {
         />
         <label>Password</label>
         <input
+          type="password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
         
-        <button>Login</button>
+        <button type="submit">Login</button>
+        <br></br>
+        <Link to="/register">Non sei ancora registrato? Clicca qui</Link>
       </form>
     </div>
      );
 }
+
+
  
 export default Login;
-
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-}

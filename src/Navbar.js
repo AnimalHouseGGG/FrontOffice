@@ -1,5 +1,6 @@
 import "./Navbar.css"
 import { Link } from 'react-router-dom';
+import LoginUtils from "./LoginUtils";
 
 const Navbar = () => {
     /*return ( 
@@ -15,13 +16,26 @@ const Navbar = () => {
       <div className="links">
         <Link to="/">Prodotti</Link>
         <Link to='/services'>Servizi</Link>
-        <Link to="/login" style={{ 
+        <Link to='/bacheca'>Bacheca</Link>
+        {!LoginUtils.isLoggedIn() ? 
+        <Link to="/user" style={{ 
           color: 'white', 
           backgroundColor: 'green',
           borderRadius: '8px' 
         }}>Login</Link>
-        <Link to='/bacheca'>Bacheca</Link>
+        :
         <Link to='/user'>User</Link>
+      }
+      {
+        LoginUtils.isLoggedIn() ? 
+        <Link onClick={LoginUtils.logout} to="/" style={{ 
+          color: 'white', 
+          backgroundColor: 'green',
+          borderRadius: '8px' 
+        }}>Logout</Link>
+        :
+        <div></div>
+      }
       </div>
     </nav>
      )

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LoginUtils from "./LoginUtils";
 
 
 const AddCommentForm = ({postId}) => {
@@ -7,11 +8,26 @@ const AddCommentForm = ({postId}) => {
 
     const handleSubmit= (id) => (e) =>{
         e.preventDefault();
-        const url='https://site212216.tw.cs.unibo.it/message';
-        const body={
+        if(LoginUtils.isLoggedIn()){
+            //get date
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = dd + '/' + mm + '/' + yyyy;
+
+            //get author
+            const tmp=localStorage["user"];
+            const user=JSON.parse(tmp);
+            const author=user.username;
+
+
+            const url='https://site212216.tw.cs.unibo.it/message';
+            const body={
             text: newComment,
-            author: 'io',
-            created: String(Date()).slice(0,24),
+            author: author,
+            created: today,
             postId: id,
             mode: 'commento'
         }
@@ -22,30 +38,39 @@ const AddCommentForm = ({postId}) => {
 
         }
         fetch(url, reqData).then(res=>res.json()).then(()=>console.log("aggiunto")).then( ()=> window.location.reload());
+        }
+        else{
+            alert("You must be logged in in order to post a comment")
+        }
     }
+
 
     
 
     return (
         <div className="container"> 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#addModal"+postId}>
+            {LoginUtils.isLoggedIn() ?
+            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#addModal"+postId}>
                 Add comment
             </button>
-            <div id={"addModal"+postId} class="modal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Add new comment</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            :
+            <div></div>
+            }
+            <div id={"addModal"+postId} className="modal" tabindex="-1">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title">Add new comment</h5>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
-                        <div class="modal-body">
+                        <div className="modal-body">
                         <form id={"newComment" +postId} className={"addComment-"+postId} onSubmit={handleSubmit(postId)}>
                             <textarea style={{width: '100%' }} value={newComment} placeholder='Type a new comment under this post' onChange={ e => setnewComment(e.target.value)}></textarea>
                         </form>   
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" form={"newComment" +postId} class="btn btn-primary">Add</button>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" form={"newComment" +postId} className="btn btn-primary">Add</button>
                         </div>
                     </div>
                 </div>

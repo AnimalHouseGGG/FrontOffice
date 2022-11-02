@@ -1,4 +1,5 @@
 import { useState } from "react";
+import LoginUtils from "./LoginUtils";
 
 const BachecaForm = () => {
 
@@ -6,11 +7,26 @@ const BachecaForm = () => {
 
     const handleSubmit=function(e){
         e.preventDefault();
-        const url='https://site212216.tw.cs.unibo.it/message';
-        const body={
+        if(LoginUtils.isLoggedIn()){
+
+            //get date
+            var today = new Date();
+            var dd = String(today.getDate()).padStart(2, '0');
+            var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+            var yyyy = today.getFullYear();
+
+            today = dd + '/' + mm + '/' + yyyy;
+            
+            //get author
+            const tmp=localStorage["user"];
+            const user=JSON.parse(tmp);
+            const author=user.username;
+
+            const url='https://site212216.tw.cs.unibo.it/message';
+            const body={
             text: comment,
-            author: 'io',
-            created: String(Date()).slice(0,24),
+            author: author,
+            created: today,
             mode: 'post'
         }
         const reqData={
@@ -19,8 +35,12 @@ const BachecaForm = () => {
             body: JSON.stringify(body)
 
         }
-        
         fetch(url, reqData).then(res=>res.json()).then(()=>console.log("aggiunto")).then( ()=> window.location.reload());
+        }
+        
+        else{
+            alert("You must be logged in in order to post a message")
+        }
     }
     
 
@@ -29,15 +49,15 @@ const BachecaForm = () => {
             <div className="bachecaForm">
 
 <form id="newPost" onSubmit={handleSubmit}>
-<div class="mb-3">
-  <label for="exampleFormControlTextarea1" class="form-label">Write a new post</label>
-  <textarea class="form-control" rows="3" value={comment} 
+<div className="mb-3">
+  <label for="exampleFormControlTextarea1" className="form-label">Write a new post</label>
+  <textarea className="form-control" rows="3" value={comment} 
     required
     placeholder='Start typing to write a post...'
     onChange={(e) => setComment(e.target.value)}
     form="comment"> </textarea>
 </div>
-<button type="submit" form="newPost" class="btn btn-primary">Post</button>
+<button type="submit" form="newPost" className="btn btn-primary">Post</button>
 </form>
 
 </div>

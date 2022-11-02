@@ -1,20 +1,24 @@
-//import { useState } from 'react';
-import Login from './Login';
-import useToken from './useToken';
-//import useUser from './useUser';
+import Login from "./Login";
+import LoginUtils from "./LoginUtils";
+import User from "./User";
 
 const UserPage = () => {
-
-    const { token, setToken } = useToken();
-    //const { user, setUser} = useUser();
-
-  if(!token) {
-    return <Login setToken={setToken}/>
-  }
-
+  
+  if(LoginUtils.isLoggedIn()){
     return ( 
-        <div className="container">UserPage</div>
-     );
+      <div className='content'><User/>
+    </div>
+   );
+  }
+  else{
+    return(
+      <div>
+        <Login></Login>
+      </div>
+      
+    )
+  }
+    
 }
  
 export default UserPage;
