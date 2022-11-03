@@ -30,7 +30,7 @@ const Login = () => {
       data.psw = password;
       data.role="customer";
   
-      console.log(data);
+      //console.log(data);
       let urlLogin=url+"/login/users";
       
      

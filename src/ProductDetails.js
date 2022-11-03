@@ -1,11 +1,15 @@
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
-const ProductDetails = () => {
-
+const ProductDetails = (props) => {
     const { state } = useLocation();
     const item=state.item;
-    console.log(item);
+    const [qty, setQty] = useState(1);
 
+    const handleAddToCart= (e)=>{
+        e.preventDefault();
+        props.addToCart(item, qty)
+    }
 
 
     return ( 
@@ -22,6 +26,8 @@ const ProductDetails = () => {
             <div>Prezzo: {item.price}</div>
             <hr></hr>
             <div>{item.disponibility}</div>
+            <button onClick={handleAddToCart}>Add</button>
+            <input type="number" value={qty} required step="1" onChange={ e => setQty(e.target.value)}></input>
         </div>
      );
 }

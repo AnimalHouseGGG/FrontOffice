@@ -4,7 +4,7 @@ const ServiceDetails = () => {
 
     const { state } = useLocation();
     const service=state.service;
-    console.log(service);
+    //console.log(service);
 
 
 

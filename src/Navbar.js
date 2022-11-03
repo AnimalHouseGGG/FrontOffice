@@ -35,7 +35,10 @@ const Navbar = () => {
         }}>Logout</Link>
         :
         <div></div>
+      }{
+        LoginUtils.isLoggedIn() ? <Link to='/cart'>Cart</Link> : <div></div>
       }
+      
       </div>
     </nav>
      )

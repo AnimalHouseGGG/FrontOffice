@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
-const CatalogoProdotti = ({items}) => {
-
+const CatalogoProdotti = ({items,addToCart}) => {
+    //console.log(addToCart);
      return (
         <div className="items-list" style={{ display: 'flex'}}>
          {items.map( item => (
