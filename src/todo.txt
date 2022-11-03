@@ -1,3 +1,1 @@
-controllare che il nome utente non sia già nel db
-il server va giù se il login non è corretto
 carrello

@@ -14,7 +14,7 @@ const RegisterPage = () => {
  
   // States for checking the errors
   const [submitted, setSubmitted] = useState(false);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState('');
  
   // Handling the name change
   const handleName = (e) => {
@@ -52,8 +52,6 @@ const RegisterPage = () => {
     if (name === '' || surname === '' || username === '' || password === '') {
       setError(true);
     } else {
-      setSubmitted(true);
-      setError(false);
       const body={
         name: name,
         surname: surname,
@@ -63,7 +61,10 @@ const RegisterPage = () => {
         born: bornDate
         
       }
-      axios.post(url, body).then(res=>console.log(res)).then( ()=> window.location.replace('/user'));
+      axios.post(url, body).then(res=>console.log(res)).then( ()=> {debugger; window.location.replace('/user')}).catch( e => {
+        console.log(e);
+        setError(e.response.data.message);
+      });
     }
   };
  
@@ -88,7 +89,7 @@ const RegisterPage = () => {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>Please enter all the fields</h1>
+        <h1>{error}</h1>
       </div>
     );
   };
