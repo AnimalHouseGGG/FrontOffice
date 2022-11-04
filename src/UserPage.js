@@ -6,7 +6,7 @@ const UserPage = () => {
   
   if(LoginUtils.isLoggedIn()){
     return ( 
-      <div className='content'><User/>
+      <div className='container'><User/>
     </div>
    );
   }

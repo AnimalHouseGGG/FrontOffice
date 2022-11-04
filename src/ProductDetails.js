@@ -8,7 +8,9 @@ const ProductDetails = (props) => {
 
     const handleAddToCart= (e)=>{
         e.preventDefault();
+        if( item.disponibility==='available')
         props.addToCart(item, qty)
+        else alert('product not available')
     }
 
 
@@ -27,7 +29,7 @@ const ProductDetails = (props) => {
             <hr></hr>
             <div>{item.disponibility}</div>
             <button onClick={handleAddToCart}>Add</button>
-            <input type="number" value={qty} required step="1" onChange={ e => setQty(e.target.value)}></input>
+            <input type="number" value={qty} required step="1" min="1" onChange={ e => setQty(e.target.value)}></input>
         </div>
      );
 }

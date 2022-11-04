@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState,useEffect } from "react";
+import { Link } from "react-router-dom";
 
 
 const User = () => {
@@ -25,6 +26,7 @@ const User = () => {
         {user.name}<br></br>
         {user.surname}<br></br>
         {user.username}<br></br>
+        <div><Link to="/myOrders" state={user.username}>My orders</Link></div>
     </div> );
 }
  

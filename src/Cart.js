@@ -1,22 +1,53 @@
 import { useState } from "react";
+import axios from "axios";
 
 const Cart = () => {
-
+    
+    const isEmpty=()=>{
+        if ( Array.isArray(cart) && cart.length) return false;
+        else return true;
+    }
+    const cart=  localStorage['cart'] ? JSON.parse(localStorage['cart']) : [];
+    
     const calculateTotal= ()=>{
         let tmpTotal=0;
         cart.map(e=>tmpTotal+=e.price*e.quantity)
         return tmpTotal;
     }
+    const total=useState( ()=> calculateTotal());
 
     const emptyCart = ()=>{
-        localStorage.removeItem('cart');
-        window.location.reload();
+        if(!isEmpty()){
+            localStorage.removeItem('cart');
+            window.location.reload();
+        }
+        else alert('already empty')
+    }
+
+    const placeOrder= async ()=>{
+        if(!isEmpty()){
+            const user=JSON.parse(localStorage['user']).username;
+        const products= cart.map( item=>(
+            JSON.stringify(item)
+        ))
+        const x=total[0];
+        const url="https://site212216.tw.cs.unibo.it/order/"
+        const body={
+            client: user,
+            products: products,
+            address: "via di casa mia",
+            total: x,
+            state: "in progress"
+        }
+        await axios.post(url, body).then( res=> console.log(res))
+        emptyCart();
+        }
+        else alert('empty cart')
+        
     }
 
     //debugger
-    const cart=  localStorage['cart'] ? JSON.parse(localStorage['cart']) : [];
     console.log(cart);
-    const total=useState( ()=> calculateTotal());
     const changeQty = (elemId) => (e) => {
 
         console.log(e.target.value);
@@ -67,6 +98,7 @@ const Cart = () => {
                 </div>
            )) : <div>Cart is Empty</div>}
            <button type="button" onClick={emptyCart}>Empty Cart</button>
+           <button type='submit' onClick={placeOrder}>Place Order</button>
         </div>
      );
 }
