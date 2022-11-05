@@ -31,19 +31,26 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
       if(tempCart.find(e=>e._id===product._id)){
         tempCart.map(e=> {  
           if(e._id===product._id) {
-            e.quantity=e.quantity+parseInt(qty);
+            if(e.disponibility>=parseInt(e.quantity)+parseInt(qty))
+            {
+              e.quantity=parseInt(e.quantity)+parseInt(qty);
+              alert("inserito");
+            }
+            else alert('too many')
           }
           return 0;
         });
       }
-      else tempCart.push(product);
+      else {
+        tempCart.push(product);
+        alert("inserito");
+      }
       
       console.log(tempCart);
       localStorage['cart']=JSON.stringify(tempCart);
       
       
       
-      alert("inserito")
     }else{
       alert('Must be logged');
     }

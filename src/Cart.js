@@ -54,7 +54,7 @@ const Cart = () => {
         let tempCart=cart;
         console.log(tempCart);
         tempCart.map(elem => {
-            if(elem._id===elemId && elem.quantity>0) elem.quantity=parseInt(e.target.value);
+            if(elem._id===elemId && elem.quantity>0 && elem.disponibility>=parseInt(e.target.value)) elem.quantity=parseInt(e.target.value);
             return 0;
         })
         let newCart=tempCart.filter( e => e.quantity>0);
@@ -87,6 +87,7 @@ const Cart = () => {
             <div>{elem.name}</div>
             <div>Categoria: {elem.category}</div>
             <div>{elem.description}</div>
+            <div>Disponibilità: {elem.disponibility}</div>
             <div>Quantità: {elem.quantity}</div>
             <input id={"elem-" + elem._id} type="number" step="1" value={elem.quantity} onChange={changeQty(elem._id)}></input>
             <div>Prezzo: {elem.price}€</div>

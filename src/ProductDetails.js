@@ -6,11 +6,13 @@ const ProductDetails = (props) => {
     const item=state.item;
     const [qty, setQty] = useState(1);
 
+    const available= item.disponibility>0;
+    console.log(available);
     const handleAddToCart= (e)=>{
         e.preventDefault();
-        if( item.disponibility==='available')
+        if( item.disponibility>=qty)
         props.addToCart(item, qty)
-        else alert('product not available')
+        else alert('product not available in that qty')
     }
 
 
@@ -27,8 +29,9 @@ const ProductDetails = (props) => {
             <hr></hr>
             <div>Prezzo: {item.price}</div>
             <hr></hr>
-            <div>{item.disponibility}</div>
+            <div>{ available ? <div> Quantità: {item.disponibility}</div> : <div>Product unavailable</div>}</div>
             <button onClick={handleAddToCart}>Add</button>
+            
             <input type="number" value={qty} required step="1" min="1" onChange={ e => setQty(e.target.value)}></input>
         </div>
      );
