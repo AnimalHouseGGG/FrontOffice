@@ -11,6 +11,7 @@ const User = () => {
         async function fetchData() {
             try {
                 const res = await axios.get(url); 
+                res.data[0].born=res.data[0].born.slice(0,10);
                 setUser(res.data[0]);
                 localStorage['user']=JSON.stringify(res.data[0]);
                 
@@ -26,7 +27,10 @@ const User = () => {
         {user.name}<br></br>
         {user.surname}<br></br>
         {user.username}<br></br>
+        Nato il: {user.born}<br></br>
+        Animali preferiti: { user.animal && user.animal.join()}<br></br>
         <div><Link to="/myOrders" state={user.username}>My orders</Link></div>
+        <div><Link to="/edit">Edit my profile</Link></div>
     </div> );
 }
  

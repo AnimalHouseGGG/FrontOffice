@@ -16,6 +16,7 @@ import LoginUtils from './LoginUtils';
 //import {useEffect,useState} from 'react';
 import Cart from './Cart';
 import Orders from './Orders';
+import EditProfile from './EditProfile';
 
 function App() { // Creare componente Home per '/' e mettere Catalogo come componente di Home
 
@@ -71,6 +72,7 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
           <Route path='/register' element={<RegisterPage/>}></Route>
           <Route path='/cart' element={<Cart/>}></Route>
           <Route path='/myOrders' element={<Orders></Orders>}></Route>
+          <Route path='/edit' element={<EditProfile></EditProfile>}></Route>
           </Routes>
       
       

@@ -39,7 +39,12 @@ const Cart = () => {
             total: x,
             state: "in progress"
         }
-        await axios.post(url, body).then( res=> console.log(res))
+        const headers={
+            headers: {
+                authority: localStorage['accessToken']
+            }
+        }
+        await axios.post(url, body, headers).then( res=> console.log(res))
         emptyCart();
         }
         else alert('empty cart')
