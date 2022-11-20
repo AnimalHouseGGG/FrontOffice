@@ -31,6 +31,7 @@ const User = () => {
         Animali preferiti: { user.animal && user.animal.join()}<br></br>
         <div><Link to="/myOrders" state={user.username}>My orders</Link></div>
         <div><Link to="/edit">Edit my profile</Link></div>
+        <div><Link to="/myBookings" state={user.username}>My bookings</Link></div>
     </div> );
 }
  

@@ -17,13 +17,14 @@ const ServiceDetails = () => {
     const [dateTime, setDateTime] = useState(setHours(setMinutes(new Date().setDate(new Date().getDate()+1), 0), 8));
     
     const [endDate, setEndDate] = useState(null);
-        const onChange = (dates) => {
-            const [start, end] = dates;
-            setDateTime(start);
-            setEndDate(end);
-            console.log(start);
+    
+    const onChange = (dates) => {
+        const [start, end] = dates;
+        setDateTime(start);
+        setEndDate(end);
+        //console.log(start);
             console.log(end);
-  };
+    };
 
     const [booking,setBooking]=useState([])
     const [bookingDays, setBookingDays]=useState([])
@@ -47,9 +48,9 @@ const ServiceDetails = () => {
                     taken.push( {start: res.data[booking].date_start, end: res.data[booking].date_end } )
                 }
                 console.log(taken);
-                 taken=taken.map( e=> (
+                taken=taken.map( e=> (
                     e=changeFormat(e)
-                )) 
+                    )) 
                 var arrayBooking=[];
                 var arrayBookingDays=[];
                 setBookingDaysForCheckFormat(taken);
@@ -74,17 +75,23 @@ const ServiceDetails = () => {
                 }
                 setBooking(arrayBooking);
                 setBookingDays(arrayBookingDays);
-             }
+            }
         )
     }, [selectedStaff, dateTime]);
+
+    //let duration=4;
+    let duration;
+    useEffect( ()=>{
+        if(duration)
+        setEndDate("");
+    }, [duration]);
 
     function addHoursToDate(date, hours) {
         return new Date(new Date(date).setHours(new Date(date).getHours() + (hours)));
       }
 
-    let duration=2;
-    //let duration;
-
+    
+    
 
     function dateOverlap(start, end, bookingList){
         start = new Date(start).getTime()
@@ -113,11 +120,22 @@ const ServiceDetails = () => {
 
     const calculateTimeDiff=(start, end)=>{
         var diff = Math.abs(start.getTime() - end.getTime()) / (3600000*24);
+        diff=end.getDate()-start.getDate()+1;
         return diff;
     }
+
+    function dateDiffInDays(a, b) {
+        const _MS_PER_DAY = 1000 * 60 * 60 * 24;
+        // Discard the time and time-zone information.
+        const utc1 = Date.UTC(a.getFullYear(), a.getMonth(), a.getDate());
+        const utc2 = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+      
+        return (Math.ceil((utc2 - utc1) / _MS_PER_DAY) +1);
+      }
  
     const handleSubmit= ()=>{
-        if(dateTime!==""){
+        //if(duration)setEndDate("");
+        if(endDate!==null){
         let staff=document.getElementById("staff").value;
         let start=setHours(new Date(dateTime), dateTime.getHours()+1)
         var end; var total;
@@ -127,8 +145,9 @@ const ServiceDetails = () => {
             else{end=setHours(new Date(tmp), tmp.getHours())}
             total=service.price;
         } else{
-            end=setHours(endDate,0);
-            total=service.price*calculateTimeDiff(start,end);
+            end=setHours(endDate,19);
+            console.log(dateDiffInDays(start,end));
+            total=service.price*dateDiffInDays(start,end);
         }
         
         const body={
@@ -140,13 +159,13 @@ const ServiceDetails = () => {
             service_name: service.name,
             place: service.place,
             user_name: JSON.parse(localStorage.user).username,
-            total: total,
+            total: Math.ceil(total),
         }
         let containsBookedTimes=false;
         let containsBookedDays=false;
         if(duration){
             for(let h in booking){
-                if(booking[h].getHours()===(end.getHours()-1)) containsBookedTimes=true;
+                if(booking[h].getHours()===(end.getHours()-2)) containsBookedTimes=true;
             }
         }
         else{
@@ -157,10 +176,17 @@ const ServiceDetails = () => {
         else if(containsBookedTimes) alert('Non puoi prenotare perché l\'orario selezionato si incrocia con un\'altra prenotazione');
         else if(containsBookedDays) alert('Non puoi prenotare perché le date richieste si incrociano con altre prenotazioni');
         else {
-            axios.post("https://site212216.tw.cs.unibo.it/booking", body, headers).then(res=>console.log(res)).then(()=>window.location.reload())
+            console.log(body);
+            axios.post("https://site212216.tw.cs.unibo.it/booking", body, headers).then(res=>console.log(res)).then(()=>window.location.replace('/myBookings'))
         }
-        } else alert("insert start date")
+        } 
+        else if( endDate===null){
+            alert("insert end date")
+        }
+        else alert("insert start date")
     }
+
+
     
     return ( 
 
@@ -169,12 +195,14 @@ const ServiceDetails = () => {
             <hr></hr>
             <div>{service.name}</div>
             <hr></hr>
+            <div>Sede: {service.place}</div>
+            <hr></hr>
             <div>Categoria: {service.category}</div>
             <hr></hr>
             <div>{service.description}</div>
             <hr></hr>
-            {duration && <div>Prezzo: {service.price}/h</div>}
-            {!duration && <div>Prezzo: {service.price}</div>}
+            {duration && <div>Prezzo: {service.price}</div>}
+            {!duration && <div>Prezzo: {service.price}/d</div>}
             <hr></hr>
             <div>{service.disponibility}</div>
             <div>Orario: 8.00-18.00</div>

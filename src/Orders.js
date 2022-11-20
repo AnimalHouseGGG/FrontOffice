@@ -28,9 +28,9 @@ const Orders =  () => {
     console.log("done");
     return ( 
         <div>
+            <div>{user}</div>
             {myOrders && myOrders.map( order=>(
                 <div key={order._id}>
-            <div>{order.client}</div>
             <div> {
                 order.products.map( product => (
                     <div key={JSON.parse(product)._id}>

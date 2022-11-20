@@ -17,6 +17,7 @@ import LoginUtils from './LoginUtils';
 import Cart from './Cart';
 import Orders from './Orders';
 import EditProfile from './EditProfile';
+import Bookings from './Bookings';
 
 function App() { // Creare componente Home per '/' e mettere Catalogo come componente di Home
 
@@ -73,6 +74,7 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
           <Route path='/cart' element={<Cart/>}></Route>
           <Route path='/myOrders' element={<Orders></Orders>}></Route>
           <Route path='/edit' element={<EditProfile></EditProfile>}></Route>
+          <Route path='/myBookings' element={<Bookings></Bookings>}></Route>
           </Routes>
       
       
