@@ -35,12 +35,17 @@ const Orders =  () => {
                 order.products.map( product => (
                     <div key={JSON.parse(product)._id}>
                     <div> {JSON.parse(product).name}</div>
-                    <div> Categoria:{JSON.parse(product).category}</div>
+                    {JSON.parse(product).category && <div> Categoria: {JSON.parse(product).category}</div>}
+                    {JSON.parse(product).specie && <div> Specie: {JSON.parse(product).specie}</div>}
+                    {JSON.parse(product).age && <div> Età: {JSON.parse(product).age} mesi</div>}
+                    {JSON.parse(product).sex && <div> Sesso: {JSON.parse(product).sex}</div>}
+                    <div>Prezzo: {JSON.parse(product).price}€</div>
                     <div> {JSON.parse(product).description}</div>
                     </div>
                 ))
                 }</div>
             <div>Totale ordine: {order.total}€</div>
+            <hr></hr>
             </div>
         ))}
         </div>

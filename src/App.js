@@ -18,6 +18,9 @@ import Cart from './Cart';
 import Orders from './Orders';
 import EditProfile from './EditProfile';
 import Bookings from './Bookings';
+import Pets from './Pets';
+import PetDetails from './PetDetails';
+import Checkout from './Checkout';
 
 function App() { // Creare componente Home per '/' e mettere Catalogo come componente di Home
 
@@ -75,6 +78,9 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
           <Route path='/myOrders' element={<Orders></Orders>}></Route>
           <Route path='/edit' element={<EditProfile></EditProfile>}></Route>
           <Route path='/myBookings' element={<Bookings></Bookings>}></Route>
+          <Route path='/pets' element={<Pets></Pets>}></Route>
+          <Route path='/pet/:id' element={<PetDetails></PetDetails>}></Route>
+          <Route path='/checkout' element={<Checkout></Checkout>}></Route>
           </Routes>
       
       

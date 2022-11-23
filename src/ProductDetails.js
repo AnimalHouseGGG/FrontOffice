@@ -27,7 +27,7 @@ const ProductDetails = (props) => {
             <hr></hr>
             <div>{item.description}</div>
             <hr></hr>
-            <div>Prezzo: {item.price}</div>
+            <div>Prezzo: {item.price}€</div>
             <hr></hr>
             <div>{ available ? <div> Quantità: {item.disponibility}</div> : <div>Product unavailable</div>}</div>
             <button onClick={handleAddToCart}>Add</button>

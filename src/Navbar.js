@@ -16,6 +16,7 @@ const Navbar = () => {
       <div className="links">
         <Link to="/">Prodotti</Link>
         <Link to='/services'>Servizi</Link>
+        <Link to='/pets'>Cuccioli</Link>
         <Link to='/bacheca'>Bacheca</Link>
         {!LoginUtils.isLoggedIn() ? 
         <Link to="/user" style={{ 

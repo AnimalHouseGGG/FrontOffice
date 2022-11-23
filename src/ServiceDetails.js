@@ -261,11 +261,8 @@ const ServiceDetails = () => {
         inline
         />
         </div>
-      </div> 
-      <hr></hr>
-
-      <div className="section">
       </div>
+      <hr></hr>
     </form>}
         <button onClick={handleSubmit}>BOOK</button>
   </div>

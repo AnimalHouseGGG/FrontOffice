@@ -8,6 +8,7 @@ const Cart = () => {
         else return true;
     }
     const cart=  localStorage['cart'] ? JSON.parse(localStorage['cart']) : [];
+    const [address, setAddress]=useState("");
     
     const calculateTotal= ()=>{
         let tmpTotal=0;
@@ -25,34 +26,37 @@ const Cart = () => {
     }
 
     const placeOrder= async ()=>{
+        
         if(!isEmpty()){
-            const user=JSON.parse(localStorage['user']).username;
-        const products= cart.map( item=>(
-            JSON.stringify(item)
-        ))
-        const x=total[0];
-        const url="https://site212216.tw.cs.unibo.it/order/"
-        const body={
-            client: user,
-            products: products,
-            address: "via di casa mia",
-            total: x,
-            state: "in progress"
-        }
-        const headers={
-            headers: {
-                authority: localStorage['accessToken']
-            }
-        }
-        await axios.post(url, body, headers).then( res=> console.log(res))
-        emptyCart();
+            if(address!==""){
+                const user=JSON.parse(localStorage['user']).username;
+                const products= cart.map( item=>(
+                    JSON.stringify(item)
+                ))
+                const x=total[0];
+                const url="https://site212216.tw.cs.unibo.it/order/"
+                const body={
+                    client: user,
+                    products: products,
+                    address: address,
+                    total: x,
+                    state: "in progress"
+                }
+                const headers={
+                    headers: {
+                        authority: localStorage['accessToken']
+                    }
+                }
+                await axios.post(url, body, headers).then( res=> console.log(res))
+                emptyCart();
+            } else alert('please insert billing address')
         }
         else alert('empty cart')
         
     }
 
     //debugger
-    console.log(cart);
+    //console.log(cart);
     const changeQty = (elemId) => (e) => {
 
         console.log(e.target.value);
@@ -103,6 +107,10 @@ const Cart = () => {
             <div>Totale: {total}€</div>
                 </div>
            )) : <div>Cart is Empty</div>}
+
+            <label>Indirizzo di spedizione</label>
+           <input type='text' value={address} onChange={e=>setAddress(e.target.value)}></input>
+           <br></br>
            <button type="button" onClick={emptyCart}>Empty Cart</button>
            <button type='submit' onClick={placeOrder}>Place Order</button>
         </div>
