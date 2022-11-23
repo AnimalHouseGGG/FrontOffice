@@ -21,6 +21,7 @@ import Bookings from './Bookings';
 import Pets from './Pets';
 import PetDetails from './PetDetails';
 import Checkout from './Checkout';
+import MyAnimals from './MyAnimals';
 
 function App() { // Creare componente Home per '/' e mettere Catalogo come componente di Home
 
@@ -81,6 +82,7 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
           <Route path='/pets' element={<Pets></Pets>}></Route>
           <Route path='/pet/:id' element={<PetDetails></PetDetails>}></Route>
           <Route path='/checkout' element={<Checkout></Checkout>}></Route>
+          <Route path='/myAnimals' element={<MyAnimals></MyAnimals>}></Route>
           </Routes>
       
       

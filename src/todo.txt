@@ -1,4 +1,3 @@
-filtri catalogo e servizi
-sezione my animals
+filtri catalogo e servizi //finire e sistemare
 leaderboard
 immagini
