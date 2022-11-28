@@ -39,7 +39,6 @@
 */
 
 .content {
-  max-width: 600px;
   margin: 40px auto;
   padding: 20px;
 }
@@ -47,3 +46,12 @@
 .item  {
   color: green;
 }
+
+body {
+    background-image: url("texture-background-with-paws-1073820.jpg");
+}
+
+ .navbarcontainer {
+  background-image: url("colore-blu.jpg");
+  margin: auto;
+} 

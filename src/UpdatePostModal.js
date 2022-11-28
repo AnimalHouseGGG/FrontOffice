@@ -14,7 +14,9 @@ const UpdatePostModal = ({mode,id,message,img}) => {
         }
         const reqData={
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+            "authority": localStorage['accessToken']
+        },
             body: JSON.stringify(body)
         }
         fetch(url, reqData).then(res=>res.json()).then(()=>console.log("updated")).then( ()=> window.location.reload());  

@@ -63,14 +63,15 @@ const Servizi = () => {
 
     useEffect( ()=>{
         filter()
+        // eslint-disable-next-line
     }, [price,category,sede])
     return ( 
-        <div className='content'>
+        <div className='container'>
         { error && <div>{ error }</div> }
         {isPending && <div>Loading...</div>  }
         {services && 
         <>
-        <div className='filters'>
+        <div className='filters' style={{margin: '10px'}}>
                 <p>Filter by price (less than)</p>
                 <input id="price" step="1" type="range" min="1" max={maxPrice(services)} onChange={e=>setPrice(e.target.value)}></input>
                 <span>{price}</span>

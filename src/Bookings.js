@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState,useEffect } from "react";
-import { useLocation } from "react-router-dom";
 import getDayOfYear from "date-fns/esm/getDayOfYear";
 import setHours from "date-fns/setHours"
 import setSeconds from "date-fns/setSeconds"
@@ -10,8 +9,6 @@ const Bookings =  () => {
 
     const [myBookings, setMyBookings]=useState([]);
     
-    const {state}=useLocation();
-    const user=state;
     const myuser=JSON.parse(localStorage['user']);
     const url="https://site212216.tw.cs.unibo.it/booking/"+myuser.username;
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };

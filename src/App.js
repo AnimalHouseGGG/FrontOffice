@@ -63,7 +63,7 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
   }
 
   return (
-    <Router>
+    <Router basename='/front'>
     <div className="App">
         <Navbar/>
         <Routes>

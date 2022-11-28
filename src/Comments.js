@@ -13,11 +13,22 @@ const Comments = ({postId}) => {
         url=url+id;
         const reqData={
             method: 'DELETE',
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+            "authority": localStorage['accessToken']
+        },
 
         }
         fetch(url, reqData).then(res=>res.json()).then(()=>console.log("eliminato")).then( ()=> window.location.reload());
     }
+
+    function getTime(time, addHour) {
+        let [h, m] = time.split(':');
+        let date = new Date();
+         date.setHours(h, m, 0)
+         date.toString();
+        let res = `${date.getHours()+addHour}:${date.getMinutes()}`
+        return res
+      }
     
 
     return ( 
@@ -32,7 +43,7 @@ const Comments = ({postId}) => {
                         - {comment.text}
                         
                         </div>
-                        <small>Written by: {comment.author} at {String(comment.created).slice(0,10)}</small><br></br>
+                        <small>Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</small><br></br>
                         
                         <button className="btn btn-warning" type="button" onClick={handleDelete(comment._id)}>Elimina commento</button>
                         <UpdatePostModal mode="comment" id={comment._id} message={comment.text} img={""}/>
@@ -43,7 +54,7 @@ const Comments = ({postId}) => {
                         - {comment.text}
                         
                         </div>
-                        <small>Written by: {comment.author} at {String(comment.created).slice(0,10)}</small><br></br>
+                        <small>Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</small><br></br>
                         
                         
                     </div>

@@ -7,16 +7,26 @@ const Posts = ({posts}) => {
         e.preventDefault();
         var url='https://site212216.tw.cs.unibo.it/message/';
         url=url+id;
-        const user=localStorage['user']
-        console.log(user);
         const reqData={
             method: 'DELETE',
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json" ,
+                        "authority": localStorage['accessToken']
+            },
             
         }
-        fetch(url, reqData).then(res=>res.json()).then(()=>console.log("eliminato")).then( ()=> window.location.reload());
+        console.log(reqData);
+        fetch(url, reqData).then(res=>res.json()).then(()=>console.log("eliminato")).then( ()=> {window.location.reload()});
     }
     const currUser= localStorage['user'] ? JSON.parse(localStorage['user']) : {};
+
+    function getTime(time, addHour) {
+        let [h, m] = time.split(':');
+        let date = new Date();
+         date.setHours(h, m, 0)
+         date.toString();
+        let res = `${date.getHours()+addHour}:${date.getMinutes()}`
+        return res
+      }
 
 return ( 
     <div className="posts">
@@ -25,7 +35,7 @@ return (
                     currUser && post.author===currUser.username ?
                     <div  id={post._id}>
                         <div> <strong>{post.text}</strong> </div>
-                            <small>Written by: {post.author} at {String(post.created).slice(0,10)}</small><br></br>
+                            <small>Written by: {post.author} on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small><br></br>
                             <button className="btn btn-danger" type="button" onClick={handleDelete(post._id)}>Elimina post</button>
                             <UpdatePostModal mode={"post"} id={post._id} message={post.text} img=""/>
                         <div>
@@ -37,7 +47,7 @@ return (
                     :
                     <div  id={post._id}>
                         <div> <strong>{post.text}</strong> </div>
-                            <small>Written by: {post.author} at {String(post.created).slice(0,10)}</small><br></br>
+                            <small>Written by: {post.author} on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small><br></br>
                         <div>
                             <Comments postId={post._id}/>
                             <AddCommentForm postId={post._id}/>

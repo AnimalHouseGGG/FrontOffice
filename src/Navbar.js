@@ -1,48 +1,45 @@
 import "./Navbar.css"
 import { Link } from 'react-router-dom';
 import LoginUtils from "./LoginUtils";
+import {FaShoppingCart }from 'react-icons/fa';
 
 const Navbar = () => {
-    /*return ( 
-        <nav className="navbar">
-                    <li>    <Link to="/">Home</Link>   </li>
-                    <li>    <Link to="/">Contacts</Link>   </li> 
-                    <li>    <Link to="/">About</Link>   </li> 
-        </nav>
-     );*/
+
+    const style={ 
+      color: 'white', 
+      backgroundColor: 'green',
+      borderRadius: '8px' 
+    }
+    
      return (
+      <div className="container navbarcontainer">
         <nav className="navbar">
       <a href="/"> <h1>Animal house</h1> </a>
       <div className="links">
-        <Link to="/">Prodotti</Link>
-        <Link to='/services'>Servizi</Link>
-        <Link to='/pets'>Cuccioli</Link>
-        <Link to='/bacheca'>Bacheca</Link>
+        <Link to="/" style={style}>Prodotti</Link>
+        <Link to='/services' style={style}>Servizi</Link>
+        <Link to='/pets' style={style}>Cuccioli</Link>
+        <Link to='/bacheca' style={style}>Bacheca</Link>
         {!LoginUtils.isLoggedIn() ? 
-        <Link to="/user" style={{ 
-          color: 'white', 
-          backgroundColor: 'green',
-          borderRadius: '8px' 
-        }}>Login</Link>
+        <Link to="/user" style={style}>Login</Link>
         :
-        <Link to='/user'>User</Link>
+        <Link to='/user' style={style}>User</Link>
       }
       {
         LoginUtils.isLoggedIn() ? 
-        <Link onClick={LoginUtils.logout} to="/" style={{ 
-          color: 'white', 
-          backgroundColor: 'green',
-          borderRadius: '8px' 
-        }}>Logout</Link>
+        <Link onClick={LoginUtils.logout} to="/" style={style}>Logout</Link>
         :
         <div></div>
       }{
-        LoginUtils.isLoggedIn() ? <Link to='/cart'>Cart</Link> : <div></div>
+        LoginUtils.isLoggedIn() ? <Link to='/cart' style={style}>
+          <FaShoppingCart></FaShoppingCart>
+        </Link> : <div></div>
       }
       
       </div>
     </nav>
+    </div>
      )
 }
- //remove line 24
+
 export default Navbar;

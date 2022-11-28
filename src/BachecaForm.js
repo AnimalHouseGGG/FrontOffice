@@ -26,15 +26,18 @@ const BachecaForm = () => {
             const body={
             text: comment,
             author: author,
-            created: today,
+            created: new Date(),
             mode: 'post'
         }
         const reqData={
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+            "authority": localStorage['accessToken']
+        },
             body: JSON.stringify(body)
 
         }
+        console.log(reqData);
         fetch(url, reqData).then(res=>res.json()).then(()=>console.log("aggiunto")).then( ()=> window.location.reload());
         }
         

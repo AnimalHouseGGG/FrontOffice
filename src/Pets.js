@@ -33,21 +33,22 @@ const Pets = ({addToCart}) => {
 
     useEffect( ()=>{
         filter()
+        // eslint-disable-next-line
     }, [specie])
 
-    return ( <div className='content'>
+    return ( <div className='container'>
         { error && <div>{ error }</div> }
         {isPending && <div>Loading...</div>  }
         {pets && 
         <>
-        <p>Filter by specie</p>
-                <select onChange={e=>setSpecie(e.target.value)}>
-                    <option>-</option>
-                    {speci.map( specie => (
-                        <option>{specie}</option>
-                    ))}
-                </select>
-        <CatalogoCuccioli pets={filteredPets}/>
+            <p style={{margin: '10px'}}>Filter by specie</p>
+                    <select style={{margin: '10px'}} onChange={e=>setSpecie(e.target.value)}>
+                        <option>-</option>
+                        {speci.map( specie => (
+                            <option>{specie}</option>
+                        ))}
+                    </select>
+            <CatalogoCuccioli pets={filteredPets}/>
         </>
         }
     </div>);

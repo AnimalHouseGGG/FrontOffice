@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import LoginUtils from "./LoginUtils";
 
 const Checkout = () => {
 
@@ -11,30 +12,33 @@ const Checkout = () => {
     const [address, setAddress]=useState("");
 
     const placeOrder= async ()=>{
-        
-        if(address!==""){
-                const user=JSON.parse(localStorage['user']).username;
-                pet.quantity=0;
-                pet.disponibility=0;
-                pet.price=10;
-                const products=[JSON.stringify(pet)];
-                
-                const x=pet.price;
-                const url="https://site212216.tw.cs.unibo.it/order/"
-                const body={
-                    client: user,
-                    products: products,
-                    address: address,
-                    total: x,
-                    state: "in progress"
-                }
-                const headers={
-                    headers: {
-                        authority: localStorage['accessToken']
+
+        if(LoginUtils.isLoggedIn()){
+            if(address!==""){
+                    const user=JSON.parse(localStorage['user']).username;
+                    pet.quantity=0;
+                    pet.disponibility=0;
+                    pet.price=10;
+                    const products=[JSON.stringify(pet)];
+                    
+                    const x=pet.price;
+                    const url="https://site212216.tw.cs.unibo.it/order/"
+                    const body={
+                        client: user,
+                        products: products,
+                        address: address,
+                        total: x,
+                        state: "in progress"
                     }
-                }
-                await axios.post(url, body, headers).then( res=> console.log(res))
-        } else alert('please insert billing address')
+                    const headers={
+                        headers: {
+                            authority: localStorage['accessToken']
+                        }
+                    }
+                    await axios.post(url, body, headers).then( res=> console.log(res))
+            } else alert('please insert billing address')
+        }else{alert("must be logged")}
+        
     }
         
 

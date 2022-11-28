@@ -27,17 +27,18 @@ const AddCommentForm = ({postId}) => {
             const body={
             text: newComment,
             author: author,
-            created: today,
+            created: new Date(),
             postId: id,
             mode: 'commento'
         }
         const reqData={
             method: 'POST',
-            headers: { "Content-Type": "application/json" },
+            headers: { "Content-Type": "application/json",
+                    "authority": localStorage['accessToken'] },
             body: JSON.stringify(body)
 
         }
-        fetch(url, reqData).then(res=>res.json()).then(()=>console.log("aggiunto")).then( ()=> window.location.reload());
+        fetch(url, reqData).then(res=>res.json()).then((res)=>console.log(res)).then( ()=> {window.location.reload()});
         }
         else{
             alert("You must be logged in in order to post a comment")

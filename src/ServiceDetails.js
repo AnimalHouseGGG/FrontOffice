@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import LoginUtils from "./LoginUtils"
 import axios from "axios";
 import setHours from "date-fns/setHours";
 import setMinutes from "date-fns/setMinutes";
@@ -7,8 +8,11 @@ import addDays from "date-fns/addDays";
 import getDayOfYear from "date-fns/esm/getDayOfYear";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from 'react-router-dom';  
+
 
 const ServiceDetails = () => {
+    const navigate = useNavigate();
     const { state } = useLocation();
     const service=state.service;
     localStorage['service']=JSON.stringify(service);
@@ -48,6 +52,7 @@ const ServiceDetails = () => {
                     taken.push( {start: res.data[booking].date_start, end: res.data[booking].date_end } )
                 }
                 console.log(taken);
+                // eslint-disable-next-line
                 taken=taken.map( e=> (
                     e=changeFormat(e)
                     )) 
@@ -80,11 +85,11 @@ const ServiceDetails = () => {
     }, [selectedStaff, dateTime]);
 
     //let duration=4;
-    let duration;
+    //let duration;
     useEffect( ()=>{
-        if(duration)
+        if(service.duration)
         setEndDate("");
-    }, [duration]);
+    }, [service.duration]);
 
     function addHoursToDate(date, hours) {
         return new Date(new Date(date).setHours(new Date(date).getHours() + (hours)));
@@ -118,11 +123,7 @@ const ServiceDetails = () => {
         return false
       }
 
-    const calculateTimeDiff=(start, end)=>{
-        var diff = Math.abs(start.getTime() - end.getTime()) / (3600000*24);
-        diff=end.getDate()-start.getDate()+1;
-        return diff;
-    }
+    
 
     function dateDiffInDays(a, b) {
         const _MS_PER_DAY = 1000 * 60 * 60 * 24;
@@ -134,56 +135,57 @@ const ServiceDetails = () => {
       }
  
     const handleSubmit= ()=>{
-        //if(duration)setEndDate("");
-        if(endDate!==null){
-        let staff=document.getElementById("staff").value;
-        let start=setHours(new Date(dateTime), dateTime.getHours()+1)
-        var end; var total;
-        if(duration) {
-            var tmp=addHoursToDate(start, duration)
-            if(tmp.getHours()>19 || tmp.toDateString()!==start.toDateString()) {alert("Non puoi prenotare servizi che terminano dopo le 18:00");return}
-            else{end=setHours(new Date(tmp), tmp.getHours())}
-            total=service.price;
-        } else{
-            end=setHours(endDate,19);
-            console.log(dateDiffInDays(start,end));
-            total=service.price*dateDiffInDays(start,end);
-        }
-        
-        const body={
-            user: localStorage.userId,
-            staff: staff,
-            service: service._id,
-            date_start: start,
-            date_end: end,
-            service_name: service.name,
-            place: service.place,
-            user_name: JSON.parse(localStorage.user).username,
-            total: Math.ceil(total),
-        }
-        let containsBookedTimes=false;
-        let containsBookedDays=false;
-        if(duration){
-            for(let h in booking){
-                if(booking[h].getHours()===(end.getHours()-2)) containsBookedTimes=true;
+        if(LoginUtils.isLoggedIn()){
+            if(endDate!==null){
+            let staff=document.getElementById("staff").value;
+            let start=setHours(new Date(dateTime), dateTime.getHours()+1)
+            var end; var total;
+            if(service.duration) {
+                var tmp=addHoursToDate(start, service.duration)
+                if(tmp.getHours()>19 || tmp.toDateString()!==start.toDateString()) {alert("Non puoi prenotare servizi che terminano dopo le 18:00");return}
+                else{end=setHours(new Date(tmp), tmp.getHours())}
+                total=service.price;
+            } else{
+                end=setHours(endDate,19);
+                console.log(dateDiffInDays(start,end));
+                total=service.price*dateDiffInDays(start,end);
             }
-        }
-        else{
-            console.log(bookingDaysForCheckFormat);
-            containsBookedDays=dateOverlap(start, end, bookingDaysForCheckFormat);
-        }
-        if(end===undefined) alert("invalid")
-        else if(containsBookedTimes) alert('Non puoi prenotare perché l\'orario selezionato si incrocia con un\'altra prenotazione');
-        else if(containsBookedDays) alert('Non puoi prenotare perché le date richieste si incrociano con altre prenotazioni');
-        else {
-            console.log(body);
-            axios.post("https://site212216.tw.cs.unibo.it/booking", body, headers).then(res=>console.log(res)).then(()=>window.location.replace('/myBookings'))
-        }
-        } 
-        else if( endDate===null){
-            alert("insert end date")
-        }
-        else alert("insert start date")
+            
+            const body={
+                user: localStorage.userId,
+                staff: staff,
+                service: service._id,
+                date_start: start,
+                date_end: end,
+                service_name: service.name,
+                place: service.place,
+                user_name: JSON.parse(localStorage.user).username,
+                total: Math.ceil(total),
+            }
+            let containsBookedTimes=false;
+            let containsBookedDays=false;
+            if(service.duration){
+                for(let h in booking){
+                    if(booking[h].getHours()===(end.getHours()-2)) containsBookedTimes=true;
+                }
+            }
+            else{
+                console.log(bookingDaysForCheckFormat);
+                containsBookedDays=dateOverlap(start, end, bookingDaysForCheckFormat);
+            }
+            if(end===undefined) alert("invalid")
+            else if(containsBookedTimes) alert('Non puoi prenotare perché l\'orario selezionato si incrocia con un\'altra prenotazione');
+            else if(containsBookedDays) alert('Non puoi prenotare perché le date richieste si incrociano con altre prenotazioni');
+            else {
+                console.log(body);
+                axios.post("https://site212216.tw.cs.unibo.it/booking", body, headers).then(res=>console.log(res)).then(()=>navigate('/myBookings'))
+            }
+            } 
+            else if( endDate===null){
+                alert("insert end date")
+            }
+            else alert("insert start date")
+        }else{alert("must be logged")}
     }
 
 
@@ -201,13 +203,13 @@ const ServiceDetails = () => {
             <hr></hr>
             <div>{service.description}</div>
             <hr></hr>
-            {duration && <div>Prezzo: {service.price}</div>}
-            {!duration && <div>Prezzo: {service.price}/d</div>}
+            {service.duration && <div>Prezzo: {service.price}</div>}
+            {!service.duration && <div>Prezzo: {service.price}/d</div>}
             <hr></hr>
             <div>{service.disponibility}</div>
             <div>Orario: 8.00-18.00</div>
             <hr></hr>
-            {duration && <div>Durata: {duration} h</div>}
+            {service.duration && <div>Durata: {service.duration} h</div>}
             <hr></hr>
 
             <select id="staff" onChange={e=>setSelectedStaff(e.target.value)}>
@@ -215,7 +217,7 @@ const ServiceDetails = () => {
                 </select>
                 <div>
     
-    {duration && <form>
+    {service.duration && <form>
       
 
       <div className="section">
@@ -230,7 +232,7 @@ const ServiceDetails = () => {
             timeCaption="time"
             dateFormat="d MMMM yyyy - h:mm"
             minTime={setHours(setMinutes(new Date(), 0), 8)}
-            maxTime={setHours(setMinutes(new Date(), 0), (18-duration))}
+            maxTime={setHours(setMinutes(new Date(), 0), (18-service.duration))}
             
             excludeTimes={
                 booking
@@ -244,7 +246,7 @@ const ServiceDetails = () => {
       <div className="section">
       </div>
     </form>}
-    {!duration && <form>
+    {!service.duration && <form>
       
 
       <div className="section">

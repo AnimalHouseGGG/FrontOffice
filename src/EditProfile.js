@@ -1,15 +1,17 @@
 import axios from "axios";
 import { useState } from "react";
 //import { useLocation } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';  
 
 const EditProfile = () => {
-
+    
+    const navigate = useNavigate();
     //const {state}=useLocation();
     const user=JSON.parse(localStorage['user']);
     //console.log(user);
     
     const [newUsername, setNewUsername]=useState("");
-
+    
     const [newPassword, setNewPassword]=useState("");
     const [currpsw, setCurrpsw]=useState("");
     const [confirmPsw, setConfirmPsw]=useState("")
@@ -39,7 +41,8 @@ const EditProfile = () => {
         console.log(body);
         if(newpassword==="" | newPassword===confirmPsw){
             await axios.post(url, body).then(res=>console.log(res));
-            window.location.replace("/user")
+            navigate("/user");
+            //window.location.replace("front/user")
         }
         else{alert("password don't match!")}
     }

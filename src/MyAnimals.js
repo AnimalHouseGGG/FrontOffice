@@ -33,6 +33,7 @@ const MyAnimals = () => {
             }
         }
         fetchData();
+        // eslint-disable-next-line
     }, [url]);
     
     const handleSubmit=()=>{
@@ -52,6 +53,20 @@ const MyAnimals = () => {
         
     }
 
+    const handleDelete= (animal)=> (e)=>{
+        e.preventDefault();
+        console.log(animal);
+        const body={
+            owner: user
+        }
+        try {
+            axios.delete(url+animal, {data: body, headers:headers}).then(()=>window.location.reload())
+            
+        } catch (error) {
+            console.log(e);
+        }
+    }
+
     return ( 
         <div className="container">
             <div className="animals">
@@ -66,6 +81,7 @@ const MyAnimals = () => {
                         <div>Sesso: {animal.sex}</div>
                         {animal.medical_condition && <div>Condizione medica: {animal.medical_condition}</div>}
                         {!animal.medical_condition && <div>Condizione medica: assente</div>}
+                        <button className="btn btn-primary" onClick={handleDelete(animal.name)}>Rimuovi</button>
                         </>
                     ))
                     

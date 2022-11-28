@@ -48,13 +48,14 @@ const Prodotti = ({addToCart}) => {
 
     useEffect( ()=>{
         filter()
+        // eslint-disable-next-line
     }, [price,category])
     return ( <div className='container'>
         { error && <div>{ error }</div> }
         {isPending && <div>Loading...</div>  }
         {filteredItems && 
         <>
-            <div className='filters'>
+            <div className='filters' style={{margin: '10px'}}>
                 <p>Filter by price (less than)</p>
                 <input id="price" type="range" value={price} min="1" max={maxPrice(items)} onChange={e=>setPrice(e.target.value)}></input>
                 <span>{price}</span>

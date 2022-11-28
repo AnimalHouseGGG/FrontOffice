@@ -27,8 +27,8 @@ const Orders =  () => {
     //const orders= await axios.get(url).then(res=>console.log(res))
     console.log("done");
     return ( 
-        <div>
-            <div>{user}</div>
+        <div className="container">
+            <div style={{margin: '10px'}}>Ordini di: {user}</div>
             {myOrders && myOrders.map( order=>(
                 <div key={order._id}>
             <div> {
