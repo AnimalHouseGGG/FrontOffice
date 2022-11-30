@@ -33,27 +33,33 @@ return (
             {
                 posts.map( post => (
                     currUser && post.author===currUser.username ?
-                    <div  id={post._id}>
-                        <div> <strong>{post.text}</strong> </div>
-                            <small>Written by: {post.author} on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small><br></br>
-                            <button className="btn btn-danger" type="button" onClick={handleDelete(post._id)}>Elimina post</button>
-                            <UpdatePostModal mode={"post"} id={post._id} message={post.text} img=""/>
+                    
+                    <div class="card mb-2 mt-2">
+                    <div class="card-body">
+                      <h5 class="card-title mb-2">{post.text}</h5>
+                      <p class="card-text">Written by: {post.author} on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</p>
+                      <button className="btn btn-danger" type="button" onClick={handleDelete(post._id)}>Elimina post</button>
+                        <UpdatePostModal mode={"post"} id={post._id} message={post.text} img=""/>
                         <div>
                             <Comments postId={post._id}/>
                             <AddCommentForm postId={post._id}/>
                         </div>
-                    
                     </div>
+                  </div>
                     :
-                    <div  id={post._id}>
-                        <div> <strong>{post.text}</strong> </div>
-                            <small>Written by: {post.author} on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small><br></br>
+                    <div class="card mb-2 mt-2">
+                    <div class="card-body">
+                      <h5 class="card-title mb-2">{post.text}</h5>
+                      <p class="card-text">Written by: {post.author} on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</p>
+
                         <div>
                             <Comments postId={post._id}/>
                             <AddCommentForm postId={post._id}/>
                         </div>
+                    </div>
                     
-                    </div>          
+                  </div>
+                           
                 ))
             }
         </div>

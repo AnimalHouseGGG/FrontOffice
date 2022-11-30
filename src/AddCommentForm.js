@@ -54,7 +54,7 @@ const AddCommentForm = ({postId}) => {
     return (
         <div className="container"> 
             {LoginUtils.isLoggedIn() ?
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#addModal"+postId}>
+            <button type="button" className="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target={"#addModal"+postId}>
                 Add comment
             </button>
             :

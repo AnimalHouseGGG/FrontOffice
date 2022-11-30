@@ -55,8 +55,7 @@ const BachecaForm = () => {
             <div className="bachecaForm">
 
 <form id="newPost" onSubmit={handleSubmit}>
-<div className="mb-3">
-  <label for="exampleFormControlTextarea1" className="form-label">Write a new post</label>
+<div className="mb-3 mt-3">
   <textarea className="form-control" rows="3" value={comment} 
     required
     placeholder='Start typing to write a post...'

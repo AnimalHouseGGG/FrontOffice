@@ -38,26 +38,22 @@ const Comments = ({postId}) => {
             {
                 comments && comments.map(comment=>(
                     currUser && comment.author===currUser.username ? 
-                    <div>
-                        <div id={comment._id}>
-                        - {comment.text}
-                        
-                        </div>
-                        <small>Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</small><br></br>
-                        
-                        <button className="btn btn-warning" type="button" onClick={handleDelete(comment._id)}>Elimina commento</button>
+                    
+                    <div class="card m-2">
+                    <div class="card-body">
+                      <h5 class="card-title">{comment.text}</h5>
+                      <p class="card-text">Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</p>
+                      <button className="btn btn-warning" type="button" onClick={handleDelete(comment._id)}>Elimina commento</button>
                         <UpdatePostModal mode="comment" id={comment._id} message={comment.text} img={""}/>
                     </div>
+                  </div>
                     : 
-                    <div>
-                        <div id={comment._id}>
-                        - {comment.text}
-                        
-                        </div>
-                        <small>Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</small><br></br>
-                        
-                        
+                    <div class="card m-2">
+                    <div class="card-body">
+                      <h5 class="card-title">{comment.text}</h5>
+                      <p class="card-text">Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</p>
                     </div>
+                  </div>
                 ))
             }
         </div>

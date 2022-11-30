@@ -25,9 +25,9 @@ const UpdatePostModal = ({mode,id,message,img}) => {
 
     return ( 
         
-        <div className="container"> 
+        <div className="m-2"> 
             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target={"#updateModal"+id}>
-                Update {mode}
+                Aggiorna {mode==="comment" ? "commento" : "post" }
             </button>
             <div id={"updateModal"+id} class="modal" tabindex="-1">
                 <div class="modal-dialog">
