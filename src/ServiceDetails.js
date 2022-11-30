@@ -221,7 +221,7 @@ const ServiceDetails = () => {
     
     return ( 
 
-        <div className="container">
+        <div className="card m-5 p-3">
             <div> <img src={service.img} alt="immagine servizio"></img></div> 
             <hr></hr>
             <div>{service.name}</div>
@@ -241,7 +241,7 @@ const ServiceDetails = () => {
             {service.duration && <div>Durata: {service.duration} h</div>}
             <hr></hr>
 
-            <select id="staff" onChange={e=>setSelectedStaff(e.target.value)}>
+            <select id="staff" onChange={e=>setSelectedStaff(e.target.value)} style={{maxWidth: '200px', margin: '5px'}}>
                     {service.staff.map( staff=> <option value={staff}>{staff}</option>)}
                 </select>
                 <div>
@@ -295,7 +295,7 @@ const ServiceDetails = () => {
       </div>
       <hr></hr>
     </form>}
-        <button onClick={handleSubmit}>BOOK</button>
+        <button className="btn btn-warning" onClick={handleSubmit}>Prenota</button>
   </div>
         </div>
 

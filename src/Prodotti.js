@@ -55,7 +55,9 @@ const Prodotti = ({addToCart}) => {
         {isPending && <div>Loading...</div>  }
         {filteredItems && 
         <>
-            <div className='filters' style={{margin: '10px'}}>
+            
+            <div class="card m-5">
+                <div class="card-body">
                 <p>Filter by price (less than)</p>
                 <input id="price" type="range" value={price} min="1" max={maxPrice(items)} onChange={e=>setPrice(e.target.value)}></input>
                 <span>{price}</span>
@@ -66,6 +68,7 @@ const Prodotti = ({addToCart}) => {
                         <option>{category}</option>
                     ))}
                 </select>
+                </div>
             </div>
             <CatalogoProdotti items={filteredItems} addToCart={addToCart}/>
         </>

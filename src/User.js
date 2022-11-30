@@ -28,12 +28,11 @@ const User = () => {
             <div class="card m-3" style={{maxWidth: '540px'}}>
             <div class="row g-0">
                 <div class="col-md-4">
-                <img src="..." class="img-fluid rounded-start" alt="..."></img>
+                <img src={require('.')} class="img-fluid rounded-start" alt="profile_picture"></img>
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">
                     <h5 class="card-title">{user.name} {user.surname}</h5>
-                        <br></br>
                         <p>{user.username}</p>
                         Nato il: {user.born}<br></br>
                         Animali preferiti: { user.animal && user.animal.join()}<br></br>

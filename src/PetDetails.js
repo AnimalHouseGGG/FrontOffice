@@ -6,7 +6,7 @@ const PetDetails = () => {
 
     return ( 
 
-        <div className="container">
+        <div className="card m-5 p-3">
             <div> <img src={pet.img} alt="immagine prodotto"></img></div> 
             <hr></hr>
             <div>{pet.name}</div>

@@ -23,6 +23,7 @@ import PetDetails from './PetDetails';
 import Checkout from './Checkout';
 import MyAnimals from './MyAnimals';
 import * as bootstrap from "bootstrap";
+import 'bootstrap/dist/js/bootstrap.bundle';
 
 function App() { // Creare componente Home per '/' e mettere Catalogo come componente di Home
 
@@ -76,7 +77,7 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
   return (
     <>
     <Router basename='/front'>
-    <div className="App">
+    <div className="App container">
         <Navbar/>
         <Routes>
           <Route path='/bacheca' element={<Bacheca/>}></Route>
@@ -95,9 +96,7 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
           <Route path='/pet/:id' element={<PetDetails></PetDetails>}></Route>
           <Route path='/checkout' element={<Checkout></Checkout>}></Route>
           <Route path='/myAnimals' element={<MyAnimals></MyAnimals>}></Route>
-          </Routes>
-      
-      
+          </Routes> 
     </div>
     </Router>
     <div className='toast-container position-absolute p-3 top-0 end-0'>

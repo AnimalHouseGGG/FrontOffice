@@ -54,7 +54,7 @@ const EditProfile = () => {
     }
     console.log(user.password);
     return ( 
-        <div className="container">
+        <div className="card m-5 p-3">
 
             <form>
             <label>

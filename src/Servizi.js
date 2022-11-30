@@ -71,24 +71,28 @@ const Servizi = () => {
         {isPending && <div>Loading...</div>  }
         {services && 
         <>
-        <div className='filters' style={{margin: '10px'}}>
-                <p>Filter by price (less than)</p>
-                <input id="price" step="1" type="range" min="1" max={maxPrice(services)} onChange={e=>setPrice(e.target.value)}></input>
-                <span>{price}</span>
-                <p>Filter by category</p>
-                <select onChange={e=>setCategory(e.target.value)}>
-                    <option>-</option>
-                    {categories.map( category => (
-                        <option>{category}</option>
-                    ))}
-                </select>
-                <p>Filter by sedi</p>
-                <select onChange={e=>setSede(e.target.value)}>
-                    <option>-</option>
-                    {sedi.map( sede => (
-                        <option>{sede}</option>
-                    ))}
-                </select>
+        
+
+            <div class="card m-5">
+                <div class="card-body">
+                    <p>Filter by price (less than)</p>
+                    <input id="price" step="1" type="range" min="1" max={maxPrice(services)} onChange={e=>setPrice(e.target.value)}></input>
+                    <span>{price}</span>
+                    <p>Filter by category</p>
+                    <select onChange={e=>setCategory(e.target.value)}>
+                        <option>-</option>
+                        {categories.map( category => (
+                            <option>{category}</option>
+                        ))}
+                    </select>
+                    <p>Filter by sedi</p>
+                    <select onChange={e=>setSede(e.target.value)}>
+                        <option>-</option>
+                        {sedi.map( sede => (
+                            <option>{sede}</option>
+                        ))}
+                    </select>
+                </div>
             </div>
         <CatalogoServizi services={filteredServices}/>
         </>

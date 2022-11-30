@@ -42,7 +42,7 @@ const Bookings =  () => {
     }
     
     return ( 
-        <div>
+        <div className="card m-5 p-3">
             {myBookings && myBookings.map( booking=>(
                 <div key={booking._id}>
                 <div>{booking.service_name}</div><div>{booking._id}</div>
@@ -68,10 +68,20 @@ const Bookings =  () => {
 
 
             <div>Totale ordine: {booking.total}€</div>
+            {
+                new Date(booking.date_start).getTime()>new Date().getTime() &&
             <button className="btn btn-warning" onClick={handleDelete(booking._id)}>Delete booking</button>
+            }
             <br></br>
             </div>
         ))}
+
+        {!myBookings.length && 
+            <div className="card m-5">
+                <div className="card-body">
+                    <strong>Non hai ancora prenotato nessun servizio!</strong>
+                </div>
+            </div>}
         </div>
      );
 }

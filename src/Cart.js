@@ -106,31 +106,41 @@ const Cart = () => {
 
     
     return ( 
-        <div className="container">
+        <>
             
            {localStorage['cart'] !== '[]' && localStorage['cart']!== undefined ? cart.map( elem => (
 
-                <div>
-            <div>{elem.name}</div>
-            <div>Categoria: {elem.category}</div>
-            <div>{elem.description}</div>
-            <div>Disponibilità: {elem.disponibility}</div>
-            <div>Quantità: {elem.quantity}</div>
-            <input id={"elem-" + elem._id} type="number" step="1" value={elem.quantity} onChange={changeQty(elem._id)}></input>
-            <div>Prezzo: {elem.price}€</div>
-            <div>Subtotale: {elem.price*elem.quantity}€</div>
-            
-            <br></br>
+                <div class='card m-5'>
+                    <div class='card-body'>
+                    <div>{elem.name}</div>
+                        <div>Categoria: {elem.category}</div>
+                        <div>{elem.description}</div>
+                        <div>Disponibilità: {elem.disponibility}</div>
+                        <div>Quantità: {elem.quantity}</div>
+                        <input id={"elem-" + elem._id} type="number" step="1" value={elem.quantity} onChange={changeQty(elem._id)}></input>
+                        <div>Prezzo: {elem.price}€</div>
+                        <div>Subtotale: {elem.price*elem.quantity}€</div>
+                        
+                        <br></br>
 
-            <div>Totale: {total}€</div>
+                        <div>Totale: {total}€</div>
+                    </div>
                 </div>
            )) : <div>Cart is Empty</div>}
 
-            <label>Indirizzo di spedizione</label>
-           <input type='text' value={address} onChange={e=>setAddress(e.target.value)}></input>
-           <br></br>
-           <button type="button" onClick={emptyCart}>Empty Cart</button>
-           <button type='submit' onClick={placeOrder}>Place Order</button>
+            
+           <div class='card'>
+                <form className="m-3">
+                    <label for="address">Indirizzo di spedizione</label>
+                    <input id="address" type='text' value={address} onChange={e=>setAddress(e.target.value)}></input>
+                </form>
+                <br></br>
+                <div className="container m-3">
+                    <button class='btn btn-danger' type="button" onClick={emptyCart}>Empty Cart</button>
+                    <button class='btn btn-primary' type='submit' onClick={placeOrder}>Place Order</button>
+
+                </div>
+            </div>
 
 
             <div className="toast-container position-absolute p-3 top-0 end-0">
@@ -162,7 +172,7 @@ const Cart = () => {
                 </div>
             </div>
            
-        </div>
+        </>
      );
 }
  

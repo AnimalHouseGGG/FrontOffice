@@ -56,7 +56,7 @@ const BachecaForm = () => {
 
 <form id="newPost" onSubmit={handleSubmit}>
 <div className="mb-3 mt-3">
-  <textarea className="form-control" rows="3" value={comment} 
+  <textarea style={{backgroundColor: '#f8d09f'}} className="form-control" rows="3" value={comment} 
     required
     placeholder='Start typing to write a post...'
     onChange={(e) => setComment(e.target.value)}

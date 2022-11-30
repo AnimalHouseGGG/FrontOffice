@@ -74,7 +74,7 @@ const MyAnimals = () => {
     }
 
     return ( 
-        <div className="container">
+        <div className="card m-5 p-3">
             <div className="animals">
             {myAnimals.length===0 && <div>Non hai ancora registrato nessun animale!</div>}
             {myAnimals.length!==0 && <div>
@@ -94,7 +94,7 @@ const MyAnimals = () => {
                     }
                 </div>}
             </div>
-            <div className="add">
+            <div className="add mt-3">
                     <p>Registra un animale!</p>
                     <form>
                         <label>Nome</label>
@@ -115,8 +115,8 @@ const MyAnimals = () => {
                         </select>
                         <br></br>
                         
-                        <label>Condizione Medica</label>
-                        <textarea placeholder="Condizione medica" value={med_con} onChange={e=>setMedCon(e.target.value)}></textarea>
+                        <label for='medcon'>Condizione Medica</label>
+                        <textarea id='medcon' placeholder="Condizione medica" value={med_con} onChange={e=>setMedCon(e.target.value)}></textarea>
 
                     </form>
                     <button onClick={handleSubmit}>Registra</button>

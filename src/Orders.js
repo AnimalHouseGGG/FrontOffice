@@ -27,21 +27,25 @@ const Orders =  () => {
     //const orders= await axios.get(url).then(res=>console.log(res))
     console.log("done");
     return ( 
-        <div className="container">
-            <div style={{margin: '10px'}}>Ordini di: {user}</div>
+        <div className="container mt-4 p-5" style={{  backgroundColor: '#f8d09f'}}>
+            <h3 className="mb-5"><strong>Ordini di: {user}</strong></h3>
             {myOrders && myOrders.map( order=>(
                 <div key={order._id}>
-            <div> {
+                <p>Ordine #{order._id}</p>
+            <div className="mt-3"> {
                 order.products.map( product => (
+                    <>
                     <div key={JSON.parse(product)._id}>
-                    <div> {JSON.parse(product).name}</div>
+                    <div> <strong>{JSON.parse(product).name}</strong></div>
                     {JSON.parse(product).category && <div> Categoria: {JSON.parse(product).category}</div>}
                     {JSON.parse(product).specie && <div> Specie: {JSON.parse(product).specie}</div>}
                     {JSON.parse(product).age && <div> Età: {JSON.parse(product).age} mesi</div>}
                     {JSON.parse(product).sex && <div> Sesso: {JSON.parse(product).sex}</div>}
-                    <div>Prezzo: {JSON.parse(product).price}€</div>
                     <div> {JSON.parse(product).description}</div>
+                    <div>Prezzo: {JSON.parse(product).price}€</div>
                     </div>
+                    <br></br>
+                    </>
                 ))
                 }</div>
             <div>Totale ordine: {order.total}€</div>

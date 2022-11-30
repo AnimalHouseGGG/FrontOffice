@@ -58,13 +58,13 @@ const Checkout = () => {
 
 
     return ( 
-        <div className="container">
+        <div className="card m-5 p-3">
             
-            <form>
+            <form className="p-3">
             <label>Indirizzo di spedizione</label>
                 <input type='text' value={address} onChange={e=>setAddress(e.target.value)}></input>
             </form>
-            <button onClick={placeOrder}>Compra</button>
+            <button className='btn btn-warning' onClick={placeOrder}>Compra</button>
         </div>
      );
 }
