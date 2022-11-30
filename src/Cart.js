@@ -1,5 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
+import * as bootstrap from "bootstrap";
+
 
 const Cart = () => {
     
@@ -7,7 +9,7 @@ const Cart = () => {
         if ( Array.isArray(cart) && cart.length) return false;
         else return true;
     }
-    const cart=  localStorage['cart'] ? JSON.parse(localStorage['cart']) : [];
+    const [cart, setCart]= useState( localStorage['cart'] ? JSON.parse(localStorage['cart']) : []);
     const [address, setAddress]=useState("");
     
     const calculateTotal= ()=>{
@@ -19,10 +21,19 @@ const Cart = () => {
 
     const emptyCart = ()=>{
         if(!isEmpty()){
-            localStorage.removeItem('cart');
-            window.location.reload();
+            //localStorage.removeItem('cart');
+            localStorage['cart']=JSON.stringify([]);
+            setCart(JSON.parse(localStorage['cart']))
+            var toastEl=document.getElementById("emptied");
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
         }
-        else alert('already empty')
+        else {
+            var toastEl=document.getElementById("empty");
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        }
+        //window.location.reload();
     }
 
     const placeOrder= async ()=>{
@@ -49,9 +60,17 @@ const Cart = () => {
                 }
                 await axios.post(url, body, headers).then( res=> console.log(res))
                 emptyCart();
-            } else alert('please insert billing address')
+            } else {
+                var toastEl=document.getElementById("billing");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+            }
         }
-        else alert('empty cart')
+        else {
+            var toastEl=document.getElementById("emptycart");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+        }
         
     }
 
@@ -69,7 +88,6 @@ const Cart = () => {
         let newCart=tempCart.filter( e => e.quantity>0);
         console.log(newCart);
         localStorage['cart']=JSON.stringify(tempCart.filter( e => e.quantity>0));
-        //debugger
         window.location.reload()
         
         /*tempCart.find( elem=> {
@@ -113,6 +131,37 @@ const Cart = () => {
            <br></br>
            <button type="button" onClick={emptyCart}>Empty Cart</button>
            <button type='submit' onClick={placeOrder}>Place Order</button>
+
+
+            <div className="toast-container position-absolute p-3 top-0 end-0">
+                <div id="emptied" class="toast align-items-center text-white bg-success border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <p>Carrello svuotato</p> 
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                </div>
+
+                <div id="empty" class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <p>Carrello già vuoto</p> 
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                </div>
+
+                <div id="emptycart" class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <p>Il tuo carrello è vuoto</p> 
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                </div>
+            </div>
+           
         </div>
      );
 }

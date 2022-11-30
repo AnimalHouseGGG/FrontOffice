@@ -2,8 +2,14 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
 import LoginUtils from "./LoginUtils";
+import * as bootstrap from "bootstrap";
+import { useNavigate } from 'react-router-dom';  
+
+
 
 const Checkout = () => {
+
+    const navigate = useNavigate();
 
     const state=useLocation();
 
@@ -35,9 +41,17 @@ const Checkout = () => {
                             authority: localStorage['accessToken']
                         }
                     }
-                    await axios.post(url, body, headers).then( res=> console.log(res))
-            } else alert('please insert billing address')
-        }else{alert("must be logged")}
+                    await axios.post(url, body, headers).then( res=> console.log(res)).then(()=>navigate('/'))
+            } else {
+                var toastEl=document.getElementById("billing");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+            }
+        }else{
+            var toastEl=document.getElementById("notlogged");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+        }
         
     }
         

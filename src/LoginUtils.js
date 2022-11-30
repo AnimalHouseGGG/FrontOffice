@@ -15,7 +15,7 @@ const LoginUtils={
       
       logout: function logout(){
         localStorage.clear();
-        window.location.replace('/');
+        window.location.replace('/front');
       }
 }
 

@@ -2,6 +2,8 @@ import axios from "axios";
 import { useState } from "react";
 //import { useLocation } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';  
+import * as bootstrap from "bootstrap";
+
 
 const EditProfile = () => {
     
@@ -44,7 +46,11 @@ const EditProfile = () => {
             navigate("/user");
             //window.location.replace("front/user")
         }
-        else{alert("password don't match!")}
+        else{
+            var toastEl=document.getElementById("password");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+        }
     }
     console.log(user.password);
     return ( 

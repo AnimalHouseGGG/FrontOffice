@@ -24,15 +24,28 @@ const User = () => {
     
 
     return ( <div>
-        {user.name}<br></br>
-        {user.surname}<br></br>
-        {user.username}<br></br>
-        Nato il: {user.born}<br></br>
-        Animali preferiti: { user.animal && user.animal.join()}<br></br>
-        <div><Link to="/myOrders" state={user.username}>My orders</Link></div>
-        <div><Link to="/edit">Edit my profile</Link></div>
-        <div><Link to="/myBookings" state={user.username}>My bookings</Link></div>
-        <div><Link to="/myAnimals" state={user.username}>My animals</Link></div>
+
+            <div class="card m-3" style={{maxWidth: '540px'}}>
+            <div class="row g-0">
+                <div class="col-md-4">
+                <img src="..." class="img-fluid rounded-start" alt="..."></img>
+                </div>
+                <div class="col-md-8">
+                <div class="card-body">
+                    <h5 class="card-title">{user.name} {user.surname}</h5>
+                        <br></br>
+                        <p>{user.username}</p>
+                        Nato il: {user.born}<br></br>
+                        Animali preferiti: { user.animal && user.animal.join()}<br></br>
+                        <div><Link to="/myOrders" state={user.username}>My orders</Link></div>
+                        <div><Link to="/edit">Edit my profile</Link></div>
+                        <div><Link to="/myBookings" state={user.username}>My bookings</Link></div>
+                        <div><Link to="/myAnimals" state={user.username}>My animals</Link></div>
+                </div>
+                </div>
+            </div>
+            </div>
+        
     </div> );
 }
  

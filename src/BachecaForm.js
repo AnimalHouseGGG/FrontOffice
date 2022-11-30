@@ -1,5 +1,6 @@
 import { useState } from "react";
 import LoginUtils from "./LoginUtils";
+import * as bootstrap from "bootstrap";
 
 const BachecaForm = () => {
 
@@ -42,7 +43,9 @@ const BachecaForm = () => {
         }
         
         else{
-            alert("You must be logged in in order to post a message")
+            var toastEl=document.getElementById("notlogged");
+            var toast = new bootstrap.Toast(toastEl);
+            toast.show();
         }
     }
     

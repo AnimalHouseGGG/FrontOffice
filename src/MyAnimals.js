@@ -1,6 +1,8 @@
 import { useState,useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import axios from "axios";
+import * as bootstrap from "bootstrap";
+
 
 const MyAnimals = () => {
 
@@ -49,7 +51,11 @@ const MyAnimals = () => {
             console.log(body);
             axios.post(url, body, headers).then(()=>window.location.reload());
         }
-        else alert("please fill all fields")
+        else {
+            var toastEl=document.getElementById("fields");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+        }
         
     }
 

@@ -22,6 +22,7 @@ import Pets from './Pets';
 import PetDetails from './PetDetails';
 import Checkout from './Checkout';
 import MyAnimals from './MyAnimals';
+import * as bootstrap from "bootstrap";
 
 function App() { // Creare componente Home per '/' e mettere Catalogo come componente di Home
 
@@ -40,16 +41,24 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
             if(e.disponibility>=parseInt(e.quantity)+parseInt(qty))
             {
               e.quantity=parseInt(e.quantity)+parseInt(qty);
-              alert("inserito");
+              var toastEl=document.getElementById("inserito");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
             }
-            else alert('too many')
+            else {
+              var toastEl=document.getElementById("toomany");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+            }
           }
           return 0;
         });
       }
       else {
         tempCart.push(product);
-        alert("inserito");
+        var toastEl=document.getElementById("inserito");
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
       }
       
       console.log(tempCart);
@@ -58,11 +67,14 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
       
       
     }else{
-      alert('Must be logged');
+      var toastEl=document.getElementById("notlogged");
+        var toast = new bootstrap.Toast(toastEl);
+        toast.show();
     }
   }
 
   return (
+    <>
     <Router basename='/front'>
     <div className="App">
         <Navbar/>
@@ -88,6 +100,100 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
       
     </div>
     </Router>
+    <div className='toast-container position-absolute p-3 top-0 end-0'>
+
+      <div id="notlogged" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Per favore prima effettua il login</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="billing" class="toast align-items-center text-white bg-warning border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Per favore inserisci un Indirizzo di spedizione</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="password" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Per favore controlla di aver inserito correttamente la nuova password</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="fields" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Per favore controlla di aver inserito correttamente tutti i campi</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="service1" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Non puoi prenotare negli orari selezionati perché la fine del servizio è oltre l'orario di chiusura</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="service2" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Per favore seleziona una data di fine</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="service3" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Gli orari selezionati si sovrappongono ad altre prenotazioni</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="service4" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Il periodo selezionato si sovrappone ad altre prenotazioni</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="service5" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Per favore seleziona una data di fine</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+      <div id="service6" class="toast align-items-center text-white bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                          <div class="d-flex">
+                              <div class="toast-body">
+                                  <p>Errore nella prenotazione</p> 
+                              </div>
+                              <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                          </div>
+      </div>
+
+    </div>
+    </>
   );
 }
 

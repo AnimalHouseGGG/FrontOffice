@@ -9,6 +9,8 @@ import getDayOfYear from "date-fns/esm/getDayOfYear";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from 'react-router-dom';  
+import * as bootstrap from "bootstrap";
+
 
 
 const ServiceDetails = () => {
@@ -142,7 +144,12 @@ const ServiceDetails = () => {
             var end; var total;
             if(service.duration) {
                 var tmp=addHoursToDate(start, service.duration)
-                if(tmp.getHours()>19 || tmp.toDateString()!==start.toDateString()) {alert("Non puoi prenotare servizi che terminano dopo le 18:00");return}
+                if(tmp.getHours()>19 || tmp.toDateString()!==start.toDateString()) {
+                    var toastEl=document.getElementById("service1");
+                    var toast = new bootstrap.Toast(toastEl);
+                    toast.show();
+                    return
+                }
                 else{end=setHours(new Date(tmp), tmp.getHours())}
                 total=service.price;
             } else{
@@ -173,19 +180,41 @@ const ServiceDetails = () => {
                 console.log(bookingDaysForCheckFormat);
                 containsBookedDays=dateOverlap(start, end, bookingDaysForCheckFormat);
             }
-            if(end===undefined) alert("invalid")
-            else if(containsBookedTimes) alert('Non puoi prenotare perché l\'orario selezionato si incrocia con un\'altra prenotazione');
-            else if(containsBookedDays) alert('Non puoi prenotare perché le date richieste si incrociano con altre prenotazioni');
+            if(end===undefined) {
+                var toastEl=document.getElementById("service2");
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
+            }
+            else if(containsBookedTimes) {
+                var toastEl=document.getElementById("service3");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+            }
+            else if(containsBookedDays) {
+                var toastEl=document.getElementById("service4");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+            }
             else {
                 console.log(body);
                 axios.post("https://site212216.tw.cs.unibo.it/booking", body, headers).then(res=>console.log(res)).then(()=>navigate('/myBookings'))
             }
             } 
             else if( endDate===null){
-                alert("insert end date")
+                var toastEl=document.getElementById("service5");
+                var toast = new bootstrap.Toast(toastEl);
+                toast.show();
             }
-            else alert("insert start date")
-        }else{alert("must be logged")}
+            else {
+                var toastEl=document.getElementById("service6");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+            }
+        }else{
+            var toastEl=document.getElementById("notlogged");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+        }
     }
 
 
