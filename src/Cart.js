@@ -110,7 +110,7 @@ const Cart = () => {
             
            {localStorage['cart'] !== '[]' && localStorage['cart']!== undefined ? cart.map( elem => (
 
-                <div class='card m-5'>
+                <div class='card m-5 p-3'>
                     <div class='card-body'>
                     <div>{elem.name}</div>
                         <div>Categoria: {elem.category}</div>
@@ -126,7 +126,7 @@ const Cart = () => {
                         <div>Totale: {total}€</div>
                     </div>
                 </div>
-           )) : <div>Cart is Empty</div>}
+           )) : <div class='card m-5 p-3'>Cart is Empty</div>}
 
             
            <div class='card'>
