@@ -35,8 +35,8 @@ const Orders =  () => {
             <div className="mt-3"> {
                 order.products.map( product => (
                     <>
-                    <div key={JSON.parse(product)._id}>
-                    <div> <strong>{JSON.parse(product).name}</strong></div>
+                    <div className="p-3" key={JSON.parse(product)._id}>
+                    <div> <strong> - {JSON.parse(product).name}</strong></div>
                     {JSON.parse(product).category && <div> Categoria: {JSON.parse(product).category}</div>}
                     {JSON.parse(product).specie && <div> Specie: {JSON.parse(product).specie}</div>}
                     {JSON.parse(product).age && <div> Età: {JSON.parse(product).age} mesi</div>}
@@ -48,7 +48,9 @@ const Orders =  () => {
                     </>
                 ))
                 }</div>
+            <div>Indirizzo di spedizione: {order.address}</div>
             <div>Totale ordine: {order.total}€</div>
+            <hr></hr>
             <hr></hr>
             </div>
         ))}

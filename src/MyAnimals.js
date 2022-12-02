@@ -103,27 +103,28 @@ const MyAnimals = () => {
                     <p>Registra un animale!</p>
                     <form>
                         <label>Nome</label>
-                        <input type="text" placeholder="Nome" value={nome} onChange={e=>setNome(e.target.value)}></input>
+                        <input className="form-control" type="text" placeholder="Nome" value={nome} onChange={e=>setNome(e.target.value)}></input>
                         <br></br>
                         <label>Specie</label>
-                        <input type="text" placeholder="Specie" value={specie} onChange={e=>setSpecie(e.target.value)}></input>
+                        <input className="form-control" type="text" placeholder="Specie" value={specie} onChange={e=>setSpecie(e.target.value)}></input>
                         <br></br>
                         <label>Età</label>
 
-                        <input type="number" placeholder="Età" value={age} onChange={e=>setAge(e.target.value)}></input>
+                        <input className="form-control" type="number" placeholder="Età" value={age} onChange={e=>setAge(e.target.value)}></input>
                         <br></br>
                         <label>Sesso</label>
                         
-                        <select id="sex">
+                        <select className="form-control" id="sex">
                             <option value="M">Maschio</option>
                             <option value="F">Femmina</option>
                         </select>
                         <br></br>
                         
                         <label for='medcon'>Condizione Medica</label>
-                        <textarea id='medcon' placeholder="Condizione medica" value={med_con} onChange={e=>setMedCon(e.target.value)}></textarea>
+                        <textarea className="form-control" id='medcon' placeholder="Condizione medica" value={med_con} onChange={e=>setMedCon(e.target.value)}></textarea>
 
                     </form>
+                    <br></br>
                     <div className="text-center">
                         <button className="btn w-25 p-3 border border-2 border-dark" onClick={handleSubmit}>Registra</button>
                     </div>

@@ -55,6 +55,7 @@ const Bookings =  () => {
                     <div>
                         <div>Da: {new Date(booking.date_start).toLocaleDateString("it-IT",options)}</div>
                         <div>A: {new Date(booking.date_end).toLocaleDateString("it-IT",options)}</div>
+                        <div>Sede: {booking.place}</div>
                         <div>Con lo staff: {booking.staff}</div>
                     </div>
                     }
@@ -64,12 +65,14 @@ const Bookings =  () => {
                     <div>
                         <div>Da: {setSeconds(setHours(new Date(booking.date_start), new Date(booking.date_start).getHours()-1),0).toLocaleString("it-IT")}</div>
                         <div>a: {setSeconds(setHours(new Date(booking.date_end), new Date(booking.date_end).getHours()-1),0).toLocaleString("it-IT")}</div>
+                        <div>Sede: {booking.place}</div>
                         <div>Con lo staff: {booking.staff}</div>
                     </div>
                 }
 
 
             <div>Totale: {booking.total}€</div>
+            <hr></hr>
             <hr></hr>
             {
                 new Date(booking.date_start).getTime()>new Date().getTime() &&
