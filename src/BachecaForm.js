@@ -62,7 +62,7 @@ const BachecaForm = () => {
     onChange={(e) => setComment(e.target.value)}
     form="comment"> </textarea>
 </div>
-<button type="submit" form="newPost" className="btn btn-primary">Post</button>
+<button type="submit" form="newPost" className="btn btn-success">Post</button>
 </form>
 
 </div>

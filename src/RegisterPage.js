@@ -95,7 +95,7 @@ const RegisterPage = () => {
   };
  
   return (
-    <div className="form">
+    <div className="form card m-5 p-5">
       <div>
         <h1>User Registration</h1>
       </div>
@@ -109,26 +109,30 @@ const RegisterPage = () => {
       <form>
         {/* Labels and inputs for form data */}
         <label className="label">Name</label>
-        <input onChange={handleName} className="input"
+        <input onChange={handleName} className="input form-control"
           value={name} type="text" />
- 
+        <br></br>
         <label className="label">Surname</label>
-        <input onChange={handleSurname} className="input"
+        <input onChange={handleSurname} className="input form-control"
           value={surname} type="email" />
+        <br></br>
 
         <label className="label">Username</label>
-        <input onChange={handleUsername} className="input"
+        <input onChange={handleUsername} className="input form-control"
           value={username} type="email" />
+        <br></br>
  
         <label className="label">Password</label>
-        <input onChange={handlePassword} className="input"
+        <input onChange={handlePassword} className="input form-control"
           value={password} type="password" />
+        <br></br>
 
         <label className="label">Data di nascita</label>
-        <input onChange={handleBornDate} className="input"
+        <input onChange={handleBornDate} className="input form-control"
           value={bornDate} type="date" />
+        <br></br>
  
-        <button onClick={handleSubmit} className="btn" type="submit">
+        <button onClick={handleSubmit} className="btn btn-success" type="submit">
           Submit
         </button>
       </form>

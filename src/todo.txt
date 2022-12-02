@@ -1,2 +1,6 @@
 leaderboard
 immagini
+
+campi da aggiungere:
+- indirizzo di spedizione -> order
+- vip -> service, item, client

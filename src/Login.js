@@ -50,11 +50,12 @@ const Login = () => {
     
 
     return ( 
-        <div className="create">
+        <div className="card m-5 p-5">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <label>Username</label>
         <input 
+          className=" form-control"
           type="text" 
           required 
           value={username}
@@ -62,13 +63,15 @@ const Login = () => {
         />
         <label>Password</label>
         <input
+          className=" form-control"
           type="password"
           required
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
-        
-        <button type="submit">Login</button>
+        <br></br>
+        <button className="btn btn-success" type="submit">Login</button>
+        <br></br>
         <br></br>
         <Link to="/register">Non sei ancora registrato? Clicca qui</Link>
       </form>
