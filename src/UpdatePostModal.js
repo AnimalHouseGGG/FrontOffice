@@ -30,7 +30,7 @@ const UpdatePostModal = ({mode,id,message,img}) => {
                 Aggiorna {mode==="comment" ? "commento" : "post" }
             </button>
             <div id={"updateModal"+id} class="modal" tabindex="-1">
-                <div class="modal-dialog">
+                <div class="card modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Update</h5>

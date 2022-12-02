@@ -61,7 +61,7 @@ const AddCommentForm = ({postId}) => {
             <div></div>
             }
             <div id={"addModal"+postId} className="modal" tabindex="-1">
-                <div className="modal-dialog">
+                <div className="card modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
                             <h5 className="modal-title">Add new comment</h5>
