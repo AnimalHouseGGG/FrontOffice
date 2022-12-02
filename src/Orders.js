@@ -27,7 +27,7 @@ const Orders =  () => {
     //const orders= await axios.get(url).then(res=>console.log(res))
     console.log("done");
     return ( 
-        <div className="container mt-4 p-5" style={{  backgroundColor: '#f8d09f'}}>
+        <div className="card m-5 p-5" style={{  backgroundColor: '#f8d09f'}}>
             <h3 className="mb-5"><strong>Ordini di: {user}</strong></h3>
             {myOrders && myOrders.map( order=>(
                 <div key={order._id}>

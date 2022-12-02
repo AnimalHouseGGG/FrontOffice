@@ -59,46 +59,48 @@ const EditProfile = () => {
             <form>
             <label>
                 Name:
-                <input type="text" value={name} onChange={e=>setName(e.target.value)} name="name" />
+                <input class="form-control" type="text" value={name} onChange={e=>setName(e.target.value)} name="name" />
             </label>
             <br></br>
             <label>
                 Surname:
-                <input type="text" value={surname} onChange={e=>setSurname(e.target.value)} name="surname" />
+                <input class="form-control" type="text" value={surname} onChange={e=>setSurname(e.target.value)} name="surname" />
             </label>
             <br></br>
             <label>
                 Username:
-                <input type="text" value={newUsername} onChange={e=>setNewUsername(e.target.value)}  name="username" />
+                <input class="form-control" type="text" value={newUsername} onChange={e=>setNewUsername(e.target.value)}  name="username" />
             </label>
             <br></br>
             <label>
                 Current Password:
-                <input type="password" name="currpsw" onChange={e=>setCurrpsw(e.target.value)}/>
+                <input class="form-control" type="password" name="currpsw" onChange={e=>setCurrpsw(e.target.value)}/>
             </label>
             <br></br>
             <label>
                 New Password:
-                <input type="password" name="newpsw" onChange={e=>setNewPassword(e.target.value)} />
+                <input class="form-control" type="password" name="newpsw" onChange={e=>setNewPassword(e.target.value)} />
             </label>
             <br></br>
             <label>
                 Confirm new Password:
-                <input type="password" name="newpswconf" onChange={e=>setConfirmPsw(e.target.value)}/>
+                <input class="form-control" type="password" name="newpswconf" onChange={e=>setConfirmPsw(e.target.value)}/>
             </label>
             <br></br>
             <label>
                 Favourite animals:
-                <input type="text" name="favanimals" value={animals} onChange={e=>setAnimals(e.target.value)} />
+                <input class="form-control" type="text" name="favanimals" value={animals} onChange={e=>setAnimals(e.target.value)} />
             </label>
             <br></br>
             <label>
                 Born date:
-                <input type="date" name="borndate" onChange={e=>setBorn(e.target.value)}></input>
+                <input class="form-control" type="date" name="borndate" onChange={e=>setBorn(e.target.value)}></input>
             </label>
             <br></br>
             </form>
-            <button onClick={handleSubmit}>Save changes</button>
+            <div className="text-center">
+            <button class="btn w-25 p-3 border border-2 border-dark" onClick={handleSubmit}>Save changes</button>
+            </div>
         </div>
      );
 }

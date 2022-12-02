@@ -39,19 +39,19 @@ const Comments = ({postId}) => {
                 comments && comments.map(comment=>(
                     currUser && comment.author===currUser.username ? 
                     
-                    <div class="card m-2">
+                    <div class="card m-2 border border-2 border-dark">
                     <div class="card-body">
                       <h5 class="card-title">{comment.text}</h5>
-                      <p class="card-text">Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</p>
+                      <p class="card-text text-secondary"><small>Written by: <span style={{color:'black'}}>{comment.author}</span> on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</small></p>
                       <button className="btn btn-warning" type="button" onClick={handleDelete(comment._id)}>Elimina commento</button>
                         <UpdatePostModal mode="comment" id={comment._id} message={comment.text} img={""}/>
                     </div>
                   </div>
                     : 
-                    <div class="card m-2">
+                    <div class="card m-2 border border-2 border-dark">
                     <div class="card-body">
                       <h5 class="card-title">{comment.text}</h5>
-                      <p class="card-text">Written by: {comment.author} on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</p>
+                      <p class="card-text text-secondary"><small>Written by: <span style={{color:'black'}}>{comment.author}</span> on {String(comment.created).slice(0,10).concat(" at ").concat(getTime(String(comment.created).slice(11,16),1))}</small></p>
                     </div>
                   </div>
                 ))

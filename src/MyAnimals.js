@@ -73,28 +73,33 @@ const MyAnimals = () => {
         }
     }
 
-    return ( 
-        <div className="card m-5 p-3">
+    return ( <>
+        <div className="card m-5 p-4">
             <div className="animals">
-            {myAnimals.length===0 && <div>Non hai ancora registrato nessun animale!</div>}
+            {myAnimals.length===0 && <div><strong>Non hai ancora registrato nessun animale!</strong></div>}
             {myAnimals.length!==0 && <div>
                     {myAnimals.map( animal=> (
                         <>
+                        <div className="card text-center m-3 p-3">
                         <img src={animal.img} alt="foto animale"></img>
-                        <div>{animal.name}</div>
+                        <div>Nome: {animal.name}</div>
                         <div>Specie: {animal.specie}</div>
                         <div>Età: {animal.age}</div>
                         <div>Sesso: {animal.sex}</div>
                         {animal.medical_condition && <div>Condizione medica: {animal.medical_condition}</div>}
                         {!animal.medical_condition && <div>Condizione medica: assente</div>}
-                        <button className="btn btn-primary" onClick={handleDelete(animal.name)}>Rimuovi</button>
+                        <div className="text-center">
+                            <button className="btn w-25 btn-danger" onClick={handleDelete(animal.name)}>Rimuovi</button>
+                        </div>
+                        </div>
                         </>
                     ))
                     
                     }
                 </div>}
             </div>
-            <div className="add mt-3">
+            </div>
+            <div className="card m-5 p-5">
                     <p>Registra un animale!</p>
                     <form>
                         <label>Nome</label>
@@ -119,9 +124,11 @@ const MyAnimals = () => {
                         <textarea id='medcon' placeholder="Condizione medica" value={med_con} onChange={e=>setMedCon(e.target.value)}></textarea>
 
                     </form>
-                    <button onClick={handleSubmit}>Registra</button>
+                    <div className="text-center">
+                        <button className="btn w-25 p-3 border border-2 border-dark" onClick={handleSubmit}>Registra</button>
+                    </div>
             </div>
-        </div>
+            </>
      );
 }
  

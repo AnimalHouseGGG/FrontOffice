@@ -42,9 +42,15 @@ const ProductDetails = (props) => {
             <div>Prezzo: {item.price}€</div>
             <hr></hr>
             <div>{ available ? <div> Quantità: {item.disponibility}</div> : <div>Product unavailable</div>}</div>
-            <button className="btn btn-warning" onClick={handleAddToCart} style={{maxWidth: '200px', margin: '5px'}}>Aggiungi al carrello</button>
+            {
+                available ? <>
+                <br></br>
+                <input class="ml-5" type="number" value={qty} required step="1" min="1" onChange={ e => setQty(e.target.value)} style={{maxWidth: '50px'}}></input>
+                <br></br>
+                <button className="btn btn-warning" onClick={handleAddToCart} style={{maxWidth: '200px', margin: '5px'}}>Aggiungi al carrello</button>
+                    </> : ""
+            }
             
-            <input type="number" value={qty} required step="1" min="1" onChange={ e => setQty(e.target.value)} style={{maxWidth: '50px'}}></input>
 
             {/* toasts */}
             <div className="toast-container position-absolute p-3 top-0 end-0">

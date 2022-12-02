@@ -8,11 +8,45 @@ body {
   background: linear-gradient(rgba(255, 255, 255, 0.2), rgba(255,255,255,0.2)), url("za.jpg");
 }
 
-.card{
+.card {
+  background-color: #fed39c;
+}
+
+.itemcard{
+  margin: 1em;
+  display:inline-flex;
+  text-align: center;
+}
+
+.btn-card{
+  display:inline-block ;
+  margin: 0.5em;
+}
+
+.btn-add{
+  margin-top: 1em;
+  margin-right: 0.7em;
+}
+
+.everycard{
   background-color: #f8d09f
+}
+
+.card-img-top{
+  aspect-ratio: 1/1;
+  width: 100%;
+  object-fit: scale-down;
+  background-color: white;
 }
 
 input {
-  background-color: #f8d09f
+  background-color: #f8d09f;
+  margin-top: 2px;
+  margin-bottom: 5px;
+
 }
 
+.items-list{
+  display:block;
+  text-align: center;
+}

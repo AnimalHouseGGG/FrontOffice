@@ -42,32 +42,35 @@ const Bookings =  () => {
     }
     
     return ( 
-        <div className="card m-5 p-3">
+        <div className="card m-5 p-5">
+            <h3 className="mb-5"><strong>Prenotazioni di: {myuser.username}</strong></h3>
             {myBookings && myBookings.map( booking=>(
                 <div key={booking._id}>
-                <div>{booking.service_name}</div><div>{booking._id}</div>
+                <p>Prenotazione #{booking._id}</p>
+                <div><strong>{booking.service_name}</strong></div>
                 {( getDayOfYear(new Date(booking.date_start))!==getDayOfYear(new Date(booking.date_end)) 
                      )
                 
                 && 
                     <div>
-                        <div>From: {new Date(booking.date_start).toLocaleDateString("it-IT",options)}</div>
-                        <div>To: {new Date(booking.date_end).toLocaleDateString("it-IT",options)}</div>
-                        <div>With staff: {booking.staff}</div>
+                        <div>Da: {new Date(booking.date_start).toLocaleDateString("it-IT",options)}</div>
+                        <div>A: {new Date(booking.date_end).toLocaleDateString("it-IT",options)}</div>
+                        <div>Con lo staff: {booking.staff}</div>
                     </div>
                     }
 
                 {
                     ( (getDayOfYear(new Date(booking.date_start))===getDayOfYear(new Date(booking.date_end))) ) &&
                     <div>
-                        <div>From: {setSeconds(setHours(new Date(booking.date_start), new Date(booking.date_start).getHours()-1),0).toLocaleString("it-IT")}</div>
-                        <div>To: {setSeconds(setHours(new Date(booking.date_end), new Date(booking.date_end).getHours()-1),0).toLocaleString("it-IT")}</div>
-                        <div>With staff: {booking.staff}</div>
+                        <div>Da: {setSeconds(setHours(new Date(booking.date_start), new Date(booking.date_start).getHours()-1),0).toLocaleString("it-IT")}</div>
+                        <div>a: {setSeconds(setHours(new Date(booking.date_end), new Date(booking.date_end).getHours()-1),0).toLocaleString("it-IT")}</div>
+                        <div>Con lo staff: {booking.staff}</div>
                     </div>
                 }
 
 
-            <div>Totale ordine: {booking.total}€</div>
+            <div>Totale: {booking.total}€</div>
+            <hr></hr>
             {
                 new Date(booking.date_start).getTime()>new Date().getTime() &&
             <button className="btn btn-warning" onClick={handleDelete(booking._id)}>Delete booking</button>
