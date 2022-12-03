@@ -6,7 +6,7 @@ const CatalogoProdotti = ({items,addToCart}) => {
         <div className="container items-list">
          {items.map( item => (
              <div className="card itemcard text-center m-3" style={{width: '18rem'}} key={item._id}>
-             <img className="card-img-top" src={item.img} alt="product"></img>
+             <img className="card-img" src={item.img} alt="product"></img>
              <div className="card-body">
                <h5 className="card-title">{item.name.replaceAll("-", " ")}</h5>
                <p className="card-text">Categoria: {item.category}</p>

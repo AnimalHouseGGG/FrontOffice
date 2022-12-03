@@ -167,6 +167,7 @@ const ServiceDetails = () => {
                 service_name: service.name,
                 place: service.place,
                 user_name: JSON.parse(localStorage.user).username,
+                avaiable_staff: service.staff,
                 total: Math.ceil(total),
             }
             let containsBookedTimes=false;
@@ -232,25 +233,27 @@ const ServiceDetails = () => {
             <hr></hr>
             <div>{service.description}</div>
             <hr></hr>
-            {service.duration && <div>Prezzo: {service.price}</div>}
-            {!service.duration && <div>Prezzo: {service.price}/d</div>}
+            {service.duration && <div>Prezzo: {service.price}€</div>}
+            {!service.duration && <div>Prezzo: {service.price}€ al giorno</div>}
             <hr></hr>
             <div>{service.disponibility}</div>
             <div>Orario: 8.00-18.00</div>
             <hr></hr>
-            {service.duration && <div>Durata: {service.duration} h</div>}
-            <hr></hr>
+            {service.duration && <div>Durata: {service.duration} h<hr></hr></div>}
+            
 
+            <p>Con lo staff:</p>
             <select id="staff" onChange={e=>setSelectedStaff(e.target.value)} style={{maxWidth: '200px', margin: '5px'}}>
                     {service.staff.map( staff=> <option value={staff}>{staff}</option>)}
                 </select>
+                <hr></hr>
                 <div>
     
     {service.duration && <form>
       
 
       <div className="section">
-        <h3 className="section-title">Date time input</h3>
+        <h3 className="section-title mb-2">Seleziona una data e un orario</h3>
         <div className="section-content">
           <DatePicker
             selected={dateTime}
@@ -279,7 +282,7 @@ const ServiceDetails = () => {
       
 
       <div className="section">
-        <h3 className="section-title">Date time input</h3>
+        <h3 className="section-title mb-2">Seleziona una data di inizio e di fine</h3>
         <div className="section-content">
             <DatePicker
         selected={dateTime}

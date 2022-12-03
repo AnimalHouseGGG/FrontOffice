@@ -31,25 +31,30 @@ const ProductDetails = (props) => {
     return ( 
 
         <div className="card m-5 p-3">
-            <div> <img src={item.img} alt="immagine prodotto"></img></div> 
+            <div className="card-img-top"> <img src={item.img} alt="immagine prodotto"></img></div> 
             <hr></hr>
-            <div>{item.name.replaceAll("-", " ")}</div>
-            <hr></hr>
-            <div>Categoria: {item.category}</div>
-            <hr></hr>
-            <div>{item.description}</div>
-            <hr></hr>
-            <div>Prezzo: {item.price}€</div>
-            <hr></hr>
-            <div>{ available ? <div> Quantità: {item.disponibility}</div> : <div>Product unavailable</div>}</div>
-            {
-                available ? <>
-                <br></br>
-                <input class="ml-5" type="number" value={qty} required step="1" min="1" onChange={ e => setQty(e.target.value)} style={{maxWidth: '50px'}}></input>
-                <br></br>
-                <button className="btn btn-warning" onClick={handleAddToCart} style={{maxWidth: '200px', margin: '5px'}}>Aggiungi al carrello</button>
-                    </> : ""
-            }
+            <div className="card-body">
+                <p>{item.name.replaceAll("-", " ")}</p>
+                <hr></hr>
+                <p>Categoria: {item.category}</p>
+                <hr></hr>
+                <p>{item.description}</p>
+                <hr></hr>
+                <p>Prezzo: {item.price}€</p>
+                <hr></hr>
+                <div>{ available ? <p> Quantità: {item.disponibility}</p> : <p>Product unavailable</p>}</div>
+                {
+                    available ? <>
+                    <br></br>
+                    <input className="form-control" class="ml-5" type="number" value={qty} required step="1" min="1" onChange={ e => setQty(e.target.value)} style={{maxWidth: '50px'}}></input>
+                    <br></br>
+                    <br></br>
+                    <button className="btn btn-warning" onClick={handleAddToCart} style={{maxWidth: '200px', margin: '5px'}}>Aggiungi al carrello</button>
+                        </> : ""
+                }
+            </div>
+            
+            
             
 
             {/* toasts */}

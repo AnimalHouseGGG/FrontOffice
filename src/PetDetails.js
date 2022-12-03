@@ -21,7 +21,7 @@ const PetDetails = () => {
             <hr></hr>
             <div>Prezzo: {pet.price}€</div>
             <hr></hr>
-            <Link to={'/checkout'} state={pet}><button>Acquista questo cucciolo</button></Link>
+            <Link to={'/checkout'} state={pet}><button className="btn btn-warning">Acquista questo cucciolo</button></Link>
             
         </div>
      );
