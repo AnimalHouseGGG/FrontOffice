@@ -22,13 +22,15 @@ const User = () => {
         fetchData();
     }, [url]);
     
+    
+    const src='https://site212216.tw.cs.unibo.it/front/'+user._id+'.png';
 
     return ( <div>
 
             <div class="card m-3" style={{maxWidth: '540px'}}>
             <div class="row g-0">
-                <div class="col-md-4">
-                <img src={require('.')} class="img-fluid rounded-start" alt="profile_picture"></img>
+                <div class="col-md-4 card-img-top">
+                <img src={src} class="img-fluid rounded-start" alt="profile_picture"></img>
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">

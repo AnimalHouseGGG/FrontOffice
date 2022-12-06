@@ -40,11 +40,29 @@ const EditProfile = () => {
         if(newanimals!==user.animal) body.animal=newanimals.split(',');
         body.currpsw=currpsw;
         body.newpsw=newpassword;
-        console.log(body);
+        body.id=user._id;
+        let img=document.querySelector("input[type='file']").files.item(0);
         if(newpassword==="" | newPassword===confirmPsw){
-            await axios.post(url, body).then(res=>console.log(res));
+            await axios.post(url, body).then(res=>console.log(res)).then( 
+                async ()=> {
+                if(img!==null){
+                    var blob=img.slice(0, img.size, 'image/*');
+                    let image=new File([blob], user._id+'.png', {type: 'image/*'})
+                    var form=new FormData();
+                    form.append("file", image)
+                    console.log(image);
+                    await axios.post("https://site212216.tw.cs.unibo.it/image/", form, {
+                        headers: {
+                            enctype: 'multipart/form-data',
+                            processData : false,
+                            contentType: false
+                        }
+                    }).then( (res)=> {
+                        console.log(res);
+                    })
+                }
+            });
             navigate("/user");
-            //window.location.replace("front/user")
         }
         else{
             var toastEl=document.getElementById("password");
@@ -54,7 +72,7 @@ const EditProfile = () => {
     }
     console.log(user.password);
     return ( 
-        <div className="card m-5 p-3">
+        <div className="card text-center m-5 p-3">
 
             <form>
             <label>
@@ -97,8 +115,13 @@ const EditProfile = () => {
                 <input class="form-control" type="date" name="borndate" onChange={e=>setBorn(e.target.value)}></input>
             </label>
             <br></br>
+            <label>
+                Propic:
+                <input class="form-control" type='file' name="propic" onChange={e=>console.log(e.target.value)}></input>
+            </label>
+            <br></br>
             </form>
-            <div className="text-center">
+            <div className="text-center m-2">
             <button class="btn w-25 p-3 border border-2 border-dark" onClick={handleSubmit}>Save changes</button>
             </div>
         </div>

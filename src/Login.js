@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import * as bootstrap from "bootstrap";
 
 const url = "https://site212216.tw.cs.unibo.it"
 const ACCESS_TOKEN_STORAGE = 'accessToken';
@@ -41,7 +42,13 @@ const Login = () => {
         await axios.get(urlUser).then( res => {
           localStorage['user']=JSON.stringify(res.data[0])
         }).then( ()=> window.location.reload())
-      }).catch(e=>console.log(e.response.data.message));
+      }).catch(e=>
+          {
+              var toastEl=document.getElementById("incorrect");
+              var toast = new bootstrap.Toast(toastEl);
+              toast.show();
+          }
+        );
       
       
   }
@@ -50,6 +57,7 @@ const Login = () => {
     
 
     return ( 
+      <>
         <div className="card m-5 p-5">
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
@@ -76,6 +84,9 @@ const Login = () => {
         <Link to="/register">Non sei ancora registrato? Clicca qui</Link>
       </form>
     </div>
+
+
+    </>
      );
 }
 

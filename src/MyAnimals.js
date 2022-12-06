@@ -38,7 +38,7 @@ const MyAnimals = () => {
         // eslint-disable-next-line
     }, [url]);
     
-    const handleSubmit=()=>{
+    const handleSubmit= async ()=>{
         if(nome!=="" && specie!=="" && age!==""){
             const body={
                 name: nome,
@@ -49,7 +49,27 @@ const MyAnimals = () => {
             }
             if(med_con!=="")body.medical_condition=med_con;
             console.log(body);
-            axios.post(url, body, headers).then(()=>window.location.reload());
+            axios.post(url, body, headers).then(async (res)=> {
+                let img=document.querySelector("input[type='file']").files.item(0);
+                if(img!==null){
+                    console.log(res.data._id);
+                    debugger
+                    var blob=img.slice(0, img.size, 'image/*');
+                    let image=new File([blob], res.data._id+'.png', {type: 'image/*'})
+                    var form=new FormData();
+                    form.append("file", image)
+                    console.log(image);
+                    await axios.post("https://site212216.tw.cs.unibo.it/image/", form, {
+                        headers: {
+                            enctype: 'multipart/form-data',
+                            processData : false,
+                            contentType: false
+                        }
+                    }).then( (res)=> {
+                        console.log(res);
+                    })
+                }
+            }).then(()=>window.location.reload());
         }
         else {
             var toastEl=document.getElementById("fields");
@@ -72,7 +92,7 @@ const MyAnimals = () => {
             console.log(e);
         }
     }
-
+    const src='https://site212216.tw.cs.unibo.it/front/'
     return ( <>
         <div className="card m-5 p-4">
             <div className="animals">
@@ -81,7 +101,10 @@ const MyAnimals = () => {
                     {myAnimals.map( animal=> (
                         <>
                         <div className="card text-center m-3 p-3">
-                        <img src={animal.img} alt="foto animale"></img>
+                            <div className="card-img-top">
+                                <img src={src+animal._id + ".png"} alt="foto animale"></img>
+                            </div>
+                            <hr></hr>
                         <div>Nome: {animal.name}</div>
                         <div>Specie: {animal.specie}</div>
                         <div>Età: {animal.age}</div>
@@ -122,6 +145,8 @@ const MyAnimals = () => {
                         
                         <label for='medcon'>Condizione Medica</label>
                         <textarea className="form-control" id='medcon' placeholder="Condizione medica" value={med_con} onChange={e=>setMedCon(e.target.value)}></textarea>
+                        <br></br>
+                        <input className="form-control" type="file"></input>
 
                     </form>
                     <br></br>

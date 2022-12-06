@@ -132,12 +132,12 @@ const Cart = () => {
            <div class='card'>
                 <form className="m-3">
                     <label for="address">Indirizzo di spedizione</label>
-                    <input id="address" type='text' value={address} onChange={e=>setAddress(e.target.value)}></input>
+                    <input className="form-control" id="address" type='text' value={address} onChange={e=>setAddress(e.target.value)}></input>
                 </form>
                 <br></br>
                 <div className="container m-3">
-                    <button class='btn btn-danger' type="button" onClick={emptyCart}>Empty Cart</button>
-                    <button class='btn btn-primary' type='submit' onClick={placeOrder}>Place Order</button>
+                    <button class='btn m-2 btn-danger' type="button" onClick={emptyCart}>Empty Cart</button>
+                    <button class='btn m-2 btn-primary' type='submit' onClick={placeOrder}>Place Order</button>
 
                 </div>
             </div>

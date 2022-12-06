@@ -1,7 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';  
+
+
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
 
     const url='https://site212216.tw.cs.unibo.it/client/';
     
@@ -61,9 +65,28 @@ const RegisterPage = () => {
         born: bornDate
         
       }
-      axios.post(url, body).then(res=>console.log(res)).then( ()=> {debugger; window.location.replace('/user')}).catch( e => {
+      axios.post(url, body).then(async (res)=>{
+        let img=document.querySelector("input[type='file']").files.item(0);
+                if(img!==null){
+                    console.log(res.data._id);
+                    debugger
+                    var blob=img.slice(0, img.size, 'image/*');
+                    let image=new File([blob], res.data._id+'.png', {type: 'image/*'})
+                    var form=new FormData();
+                    form.append("file", image)
+                    console.log(image);
+                    await axios.post("https://site212216.tw.cs.unibo.it/image/", form, {
+                        headers: {
+                            enctype: 'multipart/form-data',
+                            processData : false,
+                            contentType: false
+                        }
+                    }).then( (res)=> {
+                        console.log(res);
+                    })
+                }
+      }).then( ()=> {navigate('/user')}).catch( e => {
         console.log(e);
-        setError(e.response.data.message);
       });
     }
   };
@@ -76,7 +99,7 @@ const RegisterPage = () => {
         style={{
           display: submitted ? '' : 'none',
         }}>
-        <h1>User {name} successfully registered!!</h1>
+        <h4>User {name} successfully registered!!</h4>
       </div>
     );
   };
@@ -89,7 +112,7 @@ const RegisterPage = () => {
         style={{
           display: error ? '' : 'none',
         }}>
-        <h1>{error}</h1>
+        <p className="text-danger">{"Per favore riempi tutti i campi"}</p>
       </div>
     );
   };
@@ -130,6 +153,8 @@ const RegisterPage = () => {
         <label className="label">Data di nascita</label>
         <input onChange={handleBornDate} className="input form-control"
           value={bornDate} type="date" />
+        <br></br>
+        <input className="form-control" type="file"></input>
         <br></br>
  
         <button onClick={handleSubmit} className="btn btn-success" type="submit">
