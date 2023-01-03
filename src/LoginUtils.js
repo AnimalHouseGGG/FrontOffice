@@ -1,4 +1,4 @@
-const ACCESS_TOKEN_STORAGE = 'accessToken';
+const ACCESS_TOKEN_STORAGE = 'clientToken';
 
 const LoginUtils={
     isLoggedIn: function isLoggedIn(){

@@ -19,7 +19,7 @@ const MyAnimals = () => {
 
     const headers={
         headers: {
-            authority: localStorage['accessToken']
+            authority: localStorage['clientToken']
         }
     }
     

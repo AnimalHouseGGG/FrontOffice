@@ -10,7 +10,7 @@ const Posts = ({posts}) => {
         const reqData={
             method: 'DELETE',
             headers: { "Content-Type": "application/json" ,
-                        "authority": localStorage['accessToken']
+                        "authority": localStorage['clientToken']
             },
             
         }

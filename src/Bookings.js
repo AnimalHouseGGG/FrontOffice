@@ -13,7 +13,7 @@ const Bookings =  () => {
     const url="https://site212216.tw.cs.unibo.it/booking/"+myuser.username;
     var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     const headers={
-            authority: localStorage['accessToken']
+            authority: localStorage['clientToken']
         }
     
 

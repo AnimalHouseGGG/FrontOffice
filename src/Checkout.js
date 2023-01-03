@@ -38,7 +38,7 @@ const Checkout = () => {
                     }
                     const headers={
                         headers: {
-                            authority: localStorage['accessToken']
+                            authority: localStorage['clientToken']
                         }
                     }
                     await axios.post(url, body, headers).then( res=> console.log(res)).then(()=>navigate('/'))

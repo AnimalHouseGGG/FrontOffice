@@ -38,7 +38,7 @@ const ServiceDetails = () => {
 
     const headers={
         headers: {
-            authority: localStorage['accessToken']
+            authority: localStorage['clientToken']
         }
     }
     var taken=[]

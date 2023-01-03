@@ -33,7 +33,7 @@ const BachecaForm = () => {
         const reqData={
             method: 'POST',
             headers: { "Content-Type": "application/json",
-            "authority": localStorage['accessToken']
+            "authority": localStorage['clientToken']
         },
             body: JSON.stringify(body)
 
