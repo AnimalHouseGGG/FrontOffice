@@ -92,8 +92,6 @@ function App() { // Creare componente Home per '/' e mettere Catalogo come compo
           <Route path='/myOrders' element={<Orders></Orders>}></Route>
           <Route path='/edit' element={<EditProfile></EditProfile>}></Route>
           <Route path='/myBookings' element={<Bookings></Bookings>}></Route>
-          <Route path='/pets' element={<Pets></Pets>}></Route>
-          <Route path='/pet/:id' element={<PetDetails></PetDetails>}></Route>
           <Route path='/checkout' element={<Checkout></Checkout>}></Route>
           <Route path='/myAnimals' element={<MyAnimals></MyAnimals>}></Route>
           </Routes> 

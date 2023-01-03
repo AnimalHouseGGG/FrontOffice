@@ -30,7 +30,12 @@ const User = () => {
             <div class="card m-3" style={{maxWidth: '540px'}}>
             <div class="row g-0">
                 <div class="col-md-4 card-img-top">
-                <img src={src} class="img-fluid rounded-start" alt="profile_picture"></img>
+                <img src={src} onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src="https://site212216.tw.cs.unibo.it/front/noimg.png";
+                    }}  
+                    class="img-fluid rounded-start" alt="profile_picture">
+                </img>
                 </div>
                 <div class="col-md-8">
                 <div class="card-body">

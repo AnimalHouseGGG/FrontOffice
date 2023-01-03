@@ -43,9 +43,6 @@ const Navbar = () => {
           <Link to='/services' style={style}>Servizi</Link>
         </li>
         <li class="nav-item mb-2 mt-2">
-          <Link to='/pets' style={style}>Cuccioli</Link>
-        </li>
-        <li class="nav-item mb-2 mt-2">
           <Link to='/bacheca' style={style}>Bacheca</Link>
         </li>
         <li class="nav-item mb-2 mt-2">

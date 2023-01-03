@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import * as bootstrap from "bootstrap";
 
 const url = "https://site212216.tw.cs.unibo.it"
-const ACCESS_TOKEN_STORAGE = 'accessToken';
+const ACCESS_TOKEN_STORAGE = 'clientToken';
 
 
 

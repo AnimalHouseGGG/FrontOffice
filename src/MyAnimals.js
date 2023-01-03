@@ -102,7 +102,13 @@ const MyAnimals = () => {
                         <>
                         <div className="card text-center m-3 p-3">
                             <div className="card-img-top">
-                                <img src={src+animal._id + ".png"} alt="foto animale"></img>
+                                <img src={src+animal._id + ".png"} 
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src="https://site212216.tw.cs.unibo.it/front/noimg-animal.png";
+                                    }}
+                                alt="foto animale">
+                                </img>
                             </div>
                             <hr></hr>
                         <div>Nome: {animal.name}</div>

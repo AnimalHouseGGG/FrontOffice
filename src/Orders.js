@@ -29,14 +29,14 @@ const Orders =  () => {
     return ( 
         <div className="card m-5 p-5" style={{  backgroundColor: '#f8d09f'}}>
             <h3 className="mb-5"><strong>Ordini di: {user}</strong></h3>
-            {myOrders && myOrders.map( order=>(
+            {myOrders.length!==0 && myOrders.map( order=>(
                 <div key={order._id}>
                 <p>Ordine #{order._id}</p>
             <div className="mt-3"> {
                 order.products.map( product => (
                     <>
                     <div className="p-3" key={JSON.parse(product)._id}>
-                    <div> <strong> - {JSON.parse(product).name}</strong></div>
+                    <div> <strong> - {JSON.parse(product).name.replaceAll("-", " ")}</strong></div>
                     {JSON.parse(product).category && <div> Categoria: {JSON.parse(product).category}</div>}
                     {JSON.parse(product).specie && <div> Specie: {JSON.parse(product).specie}</div>}
                     {JSON.parse(product).age && <div> Età: {JSON.parse(product).age} mesi</div>}
@@ -54,6 +54,10 @@ const Orders =  () => {
             <hr></hr>
             </div>
         ))}
+        {
+            myOrders.length===0 &&
+            <h5>Non hai ancora effettuato nessun ordine!</h5>
+        }
         </div>
      );
 }
