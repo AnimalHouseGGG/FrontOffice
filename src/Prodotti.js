@@ -58,10 +58,10 @@ const Prodotti = ({addToCart}) => {
             
             <div class="card m-5">
                 <div class="card-body">
-                <p>Filter by price (less than)</p>
+                <p>Filtra per prezzo</p>
                 <input id="price" type="range" value={price} min="1" max={maxPrice(items)} onChange={e=>setPrice(e.target.value)}></input>
                 <span>{price}</span>
-                <p>Filter by category</p>
+                <p>Filtra per categoria</p>
                 <select onChange={e=>setCategory(e.target.value)}>
                     <option>-</option>
                     {categories.map( category => (

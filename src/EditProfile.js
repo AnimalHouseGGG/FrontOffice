@@ -76,12 +76,12 @@ const EditProfile = () => {
 
             <form>
             <label>
-                Name:
+                Nome:
                 <input class="form-control" type="text" value={name} onChange={e=>setName(e.target.value)} name="name" />
             </label>
             <br></br>
             <label>
-                Surname:
+                Cognome:
                 <input class="form-control" type="text" value={surname} onChange={e=>setSurname(e.target.value)} name="surname" />
             </label>
             <br></br>
@@ -91,32 +91,32 @@ const EditProfile = () => {
             </label>
             <br></br>
             <label>
-                Current Password:
+                Password attuale:
                 <input class="form-control" type="password" name="currpsw" onChange={e=>setCurrpsw(e.target.value)}/>
             </label>
             <br></br>
             <label>
-                New Password:
+                Nuova Password:
                 <input class="form-control" type="password" name="newpsw" onChange={e=>setNewPassword(e.target.value)} />
             </label>
             <br></br>
             <label>
-                Confirm new Password:
+                Conferma nuova Password:
                 <input class="form-control" type="password" name="newpswconf" onChange={e=>setConfirmPsw(e.target.value)}/>
             </label>
             <br></br>
             <label>
-                Favourite animals:
+                Animali preferiti:
                 <input class="form-control" type="text" name="favanimals" value={animals} onChange={e=>setAnimals(e.target.value)} />
             </label>
             <br></br>
             <label>
-                Born date:
+                Data di nascita:
                 <input class="form-control" type="date" name="borndate" onChange={e=>setBorn(e.target.value)}></input>
             </label>
             <br></br>
             <label>
-                Propic:
+                Immagine del profilo:
                 <input class="form-control" type='file' name="propic" onChange={e=>console.log(e.target.value)}></input>
             </label>
             <br></br>

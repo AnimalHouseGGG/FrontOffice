@@ -55,7 +55,7 @@ const AddCommentForm = ({postId}) => {
         <div className="container"> 
             {LoginUtils.isLoggedIn() ?
             <button type="button" className="btn btn-primary float-end" data-bs-toggle="modal" data-bs-target={"#addModal"+postId}>
-                Add comment
+                Aggiungi un commento
             </button>
             :
             <div></div>
@@ -64,7 +64,7 @@ const AddCommentForm = ({postId}) => {
                 <div className="card modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title">Add new comment</h5>
+                            <h5 className="modal-title">Aggiungi un nuovo commento</h5>
                             <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div className="modal-body">
@@ -73,8 +73,8 @@ const AddCommentForm = ({postId}) => {
                         </form>   
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" form={"newComment" +postId} className="btn btn-primary">Add</button>
+                            <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                            <button type="submit" form={"newComment" +postId} className="btn btn-primary">Aggiungi</button>
                         </div>
                     </div>
                 </div>

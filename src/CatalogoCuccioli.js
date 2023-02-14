@@ -10,7 +10,7 @@ const CatalogoCuccioli = ({pets}) => {
                <h5 className="card-title">{pet.name}</h5>
                <p className="card-text">Specie: {pet.specie}</p>
                <p className="card-text">Prezzo: {pet.price}€</p>
-               <Link className="btn btn-primary" to={"/pet/"+pet._id} state={{pet}}> Details </Link>
+               <Link className="btn btn-primary" to={"/pet/"+pet._id} state={{pet}}> Dettagli </Link>
              </div>
            </div>
          ))}

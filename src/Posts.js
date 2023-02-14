@@ -37,7 +37,7 @@ return (
                     <div class="card mb-2 mt-2 border border-2 border-dark">
                     <div class="card-body">
                       <h5 class="card-title mb-2">{post.text}</h5>
-                      <p class="card-text text-secondary"><small>Written by: <span style={{color:'black'}}>{post.author}</span> on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small></p>
+                      <p class="card-text text-secondary"><small>Scritto da: <span style={{color:'black'}}>{post.author}</span> il {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small></p>
                       <button className="btn btn-danger" type="button" onClick={handleDelete(post._id)}>Elimina post</button>
                         <UpdatePostModal mode={"post"} id={post._id} message={post.text} img=""/>
                         <div>
@@ -50,7 +50,7 @@ return (
                     <div class="card mb-2 mt-2 border border-2 border-dark">
                     <div class="card-body">
                       <h5 class="card-title mb-2">{post.text}</h5>
-                      <p class="card-text text-secondary"><small>Written by: <span style={{color:'black'}}>{post.author}</span> on {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small></p>
+                      <p class="card-text text-secondary"><small>Scritto da: <span style={{color:'black'}}>{post.author}</span> il {String(post.created).slice(0,10).concat(" at ").concat(getTime(String(post.created).slice(11,16),1))}</small></p>
 
                         <div>
                             <Comments postId={post._id}/>

@@ -126,7 +126,7 @@ const Cart = () => {
                         <div>Totale: {total}€</div>
                     </div>
                 </div>
-           )) : <div class='card m-5 p-3'>Cart is Empty</div>}
+           )) : <div class='card m-5 p-3'>Carrello vuoto</div>}
 
             
            <div class='card'>
@@ -136,8 +136,8 @@ const Cart = () => {
                 </form>
                 <br></br>
                 <div className="container m-3">
-                    <button class='btn m-2 btn-danger' type="button" onClick={emptyCart}>Empty Cart</button>
-                    <button class='btn m-2 btn-primary' type='submit' onClick={placeOrder}>Place Order</button>
+                    <button class='btn m-2 btn-danger' type="button" onClick={emptyCart}>Svuota carrello</button>
+                    <button class='btn m-2 btn-primary' type='submit' onClick={placeOrder}>Prosegui con l'ordine</button>
 
                 </div>
             </div>

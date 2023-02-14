@@ -120,7 +120,7 @@ const RegisterPage = () => {
   return (
     <div className="form card m-5 p-5">
       <div>
-        <h1>User Registration</h1>
+        <h1>Registrati</h1>
       </div>
  
       {/* Calling to the methods */}
@@ -131,31 +131,33 @@ const RegisterPage = () => {
  
       <form>
         {/* Labels and inputs for form data */}
-        <label className="label">Name</label>
+        <label className="label">Nome*</label>
         <input onChange={handleName} className="input form-control"
           value={name} type="text" />
         <br></br>
-        <label className="label">Surname</label>
+        <label className="label">Cognome*</label>
         <input onChange={handleSurname} className="input form-control"
           value={surname} type="email" />
         <br></br>
 
-        <label className="label">Username</label>
+        <label className="label">Username*</label>
         <input onChange={handleUsername} className="input form-control"
           value={username} type="email" />
         <br></br>
  
-        <label className="label">Password</label>
+        <label className="label">Password*</label>
         <input onChange={handlePassword} className="input form-control"
           value={password} type="password" />
         <br></br>
 
-        <label className="label">Data di nascita</label>
+        <label className="label">Data di nascita*</label>
         <input onChange={handleBornDate} className="input form-control"
           value={bornDate} type="date" />
         <br></br>
+        <label className="label">Immagine del profilo</label>
         <input className="form-control" type="file"></input>
         <br></br>
+        <small>*campi obbligatori</small>
  
         <button onClick={handleSubmit} className="btn btn-success" type="submit">
           Submit

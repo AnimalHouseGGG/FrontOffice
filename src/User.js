@@ -43,11 +43,11 @@ const User = () => {
                         <p>{user.username}</p>
                         Nato il: {user.born}<br></br>
                         Animali preferiti: { user.animal && user.animal.join()}<br></br>
-                        <div><Link to="/myOrders" state={user.username}>My orders</Link></div>
-                        <div><Link to="/myBookings" state={user.username}>My bookings</Link></div>
-                        <div><Link to="/myAnimals" state={user.username}>My animals</Link></div>
+                        <div><Link to="/myOrders" state={user.username}>I miei ordini</Link></div>
+                        <div><Link to="/myBookings" state={user.username}>Le mie prenotazioni</Link></div>
+                        <div><Link to="/myAnimals" state={user.username}>I miei animali</Link></div>
                         <br></br>
-                        <div><Link to="/edit">Edit my profile</Link></div>
+                        <div><Link to="/edit">Modifica profilo</Link></div>
                 </div>
                 </div>
             </div>

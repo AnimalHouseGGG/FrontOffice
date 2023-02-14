@@ -76,7 +76,7 @@ const Bookings =  () => {
             <hr></hr>
             {
                 new Date(booking.date_start).getTime()>new Date().getTime() &&
-            <button className="btn btn-warning" onClick={handleDelete(booking._id)}>Delete booking</button>
+            <button className="btn btn-warning" onClick={handleDelete(booking._id)}>Elimina prenotazione</button>
             }
             <br></br>
             </div>

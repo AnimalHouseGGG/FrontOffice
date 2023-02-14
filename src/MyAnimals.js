@@ -156,6 +156,7 @@ const MyAnimals = () => {
 
                     </form>
                     <br></br>
+                    <br></br>
                     <div className="text-center">
                         <button className="btn w-25 p-3 border border-2 border-dark" onClick={handleSubmit}>Registra</button>
                     </div>

@@ -12,7 +12,7 @@ const CatalogoServizi = ({services}) => {
               <h5 className="card-title">{service.name}</h5>
               <p className="card-text">Categoria: {service.category}</p>
               <p className="card-text">Prezzo: {service.price}€</p>
-              <Link className="btn btn-primary" to={"/service/"+service._id} state={{service}}> Details </Link>
+              <Link className="btn btn-primary" to={"/service/"+service._id} state={{service}}> Dettagli </Link>
             </div>
           </div>
         ))}

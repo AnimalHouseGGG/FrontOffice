@@ -33,7 +33,7 @@ const UpdatePostModal = ({mode,id,message,img}) => {
                 <div class="card modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">Update</h5>
+                            <h5 class="modal-title">Aggiorna</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
@@ -42,8 +42,8 @@ const UpdatePostModal = ({mode,id,message,img}) => {
                         </form>   
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="submit" form={"updateComment" +id} class="btn btn-primary">Add</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+                            <button type="submit" form={"updateComment" +id} class="btn btn-primary">Aggiorna</button>
                         </div>
                     </div>
                 </div>

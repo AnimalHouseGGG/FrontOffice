@@ -42,7 +42,7 @@ const ProductDetails = (props) => {
                 <hr></hr>
                 <p>Prezzo: {item.price}€</p>
                 <hr></hr>
-                <div>{ available ? <p> Quantità: {item.disponibility}</p> : <p>Product unavailable</p>}</div>
+                <div>{ available ? <p> Quantità: {item.disponibility}</p> : <p>Prodotto non disponibile</p>}</div>
                 {
                     available ? <>
                     <br></br>

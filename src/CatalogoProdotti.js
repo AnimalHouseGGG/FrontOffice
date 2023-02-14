@@ -11,7 +11,7 @@ const CatalogoProdotti = ({items,addToCart}) => {
                <h5 className="card-title">{item.name.replaceAll("-", " ")}</h5>
                <p className="card-text">Categoria: {item.category}</p>
                <p className="card-text">Prezzo: {item.price}€</p>
-               <Link className="btn btn-primary btn-card" to={"/item/"+item._id} state={{item}}> Details </Link>
+               <Link className="btn btn-primary btn-card" to={"/item/"+item._id} state={{item}}> Dettagli </Link>
              </div>
            </div>
          ))}
